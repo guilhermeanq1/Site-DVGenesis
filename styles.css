@@ -23855,3 +23855,617 @@ body:has(.hero#inicio) main > .metric-shell[data-metrics] .metric-bar {
   }
 }
 
+/* Eventos: layout final da seção Nossas experiências */
+.events-page .events-gallery-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-auto-rows: minmax(0, 1fr) !important;
+  gap: 28px !important;
+  align-items: stretch !important;
+}
+
+.events-page .events-gallery-grid article {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(120, 150, 200, 0.18) !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  box-shadow: 0 24px 70px rgba(15, 35, 90, 0.08) !important;
+}
+
+.events-page .events-gallery-feature {
+  grid-row: span 2 !important;
+  grid-column: auto !important;
+}
+
+.events-page .events-gallery-thumb {
+  width: 100% !important;
+  min-height: 0 !important;
+  height: 190px !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  background-color: #07123c !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.events-page .events-gallery-feature .events-gallery-thumb {
+  height: 360px !important;
+}
+
+.events-page .events-gallery-grid article.has-image .events-gallery-thumb {
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.events-page .events-gallery-grid h3 {
+  margin: 18px 6px 0 !important;
+  color: #07123c !important;
+  font-size: 1.18rem !important;
+  line-height: 1.22 !important;
+}
+
+.events-page .events-gallery-grid p {
+  margin: 12px 6px 0 !important;
+  color: #5a6684 !important;
+  font-size: 0.96rem !important;
+  line-height: 1.6 !important;
+}
+
+.events-page .events-gallery-copy {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+}
+
+.events-page .events-gallery-feature .events-gallery-copy {
+  justify-content: stretch !important;
+  padding: 24px 10px 14px !important;
+}
+
+.events-page .events-gallery-feature-content {
+  --feature-copy-offset: 70px;
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+  min-height: 230px !important;
+}
+
+.events-page .events-gallery-feature-heading {
+  display: grid !important;
+  grid-template-columns: 52px minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: start !important;
+}
+
+.events-page .events-gallery-feature-icon {
+  width: 52px !important;
+  height: 52px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  border-radius: 18px !important;
+  color: #3167ff !important;
+  background: linear-gradient(135deg, rgba(78, 109, 255, 0.14), rgba(156, 94, 255, 0.12)) !important;
+  box-shadow: inset 0 0 0 1px rgba(74, 107, 255, 0.12), 0 18px 34px rgba(50, 96, 220, 0.14) !important;
+}
+
+.events-page .events-gallery-feature-icon svg {
+  width: 26px !important;
+  height: 26px !important;
+  stroke-width: 2.2 !important;
+}
+
+.events-page .events-gallery-feature .events-gallery-feature-content h3 {
+  margin: 0 !important;
+  font-size: 1.32rem !important;
+}
+
+.events-page .events-gallery-feature-line {
+  display: block !important;
+  width: 44px !important;
+  height: 3px !important;
+  margin-top: 20px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #7b35ff, #2f8cff) !important;
+}
+
+.events-page .events-gallery-feature .events-gallery-feature-content p {
+  margin: 30px 0 0 var(--feature-copy-offset) !important;
+  max-width: 34ch !important;
+}
+
+.events-page .events-gallery-feature-link {
+  display: inline-flex !important;
+  width: fit-content !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin: auto 0 0 var(--feature-copy-offset) !important;
+  color: #236dff !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+.events-page .events-gallery-feature-link svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke-width: 2.4 !important;
+  transition: transform 0.2s ease !important;
+}
+
+.events-page .events-gallery-feature-link:hover svg {
+  transform: translateX(4px) !important;
+}
+
+@media (max-width: 1080px) {
+  .events-page .events-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: auto !important;
+  }
+
+  .events-page .events-gallery-feature {
+    grid-row: auto !important;
+    grid-column: auto !important;
+  }
+
+  .events-page .events-gallery-feature .events-gallery-thumb {
+    height: 280px !important;
+  }
+}
+
+@media (max-width: 740px) {
+  .events-page .events-gallery-grid {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: auto !important;
+    gap: 22px !important;
+  }
+
+  .events-page .events-gallery-feature .events-gallery-thumb,
+  .events-page .events-gallery-thumb {
+    height: 220px !important;
+  }
+
+  .events-page .events-gallery-feature .events-gallery-copy {
+    padding: 20px 6px 8px !important;
+  }
+
+  .events-page .events-gallery-feature-content {
+    --feature-copy-offset: 60px;
+    min-height: 0 !important;
+  }
+
+  .events-page .events-gallery-feature-heading {
+    grid-template-columns: 46px minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .events-page .events-gallery-feature-icon {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 16px !important;
+  }
+
+  .events-page .events-gallery-feature .events-gallery-feature-content p,
+  .events-page .events-gallery-feature-link {
+    margin-left: var(--feature-copy-offset) !important;
+  }
+}
+
+
+/* Compact global footer and larger WhatsApp button */
+.footer {
+  grid-template-columns: minmax(260px, 0.95fr) minmax(360px, 1.15fr) !important;
+  gap: clamp(28px, 4vw, 58px) !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  align-items: start !important;
+}
+
+.footer-brand p {
+  max-width: 330px !important;
+  margin: 12px 0 10px !important;
+  line-height: 1.55 !important;
+}
+
+.footer-brand small {
+  display: block;
+  line-height: 1.45 !important;
+}
+
+.footer-columns {
+  grid-template-columns: minmax(230px, max-content) minmax(220px, max-content) !important;
+  justify-content: end !important;
+  gap: clamp(30px, 4vw, 58px) !important;
+}
+
+.footer-columns > div:first-child {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-template-rows: auto repeat(3, auto);
+  grid-auto-flow: column;
+  column-gap: 34px;
+  row-gap: 9px;
+}
+
+.footer-columns > div:first-child h3 {
+  grid-column: 1 / -1;
+}
+
+.footer-columns h3 {
+  margin: 0 0 10px !important;
+}
+
+.footer-columns a {
+  margin-bottom: 0 !important;
+  line-height: 1.35 !important;
+}
+
+.footer-columns > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.footer-columns > div:nth-child(2) h3 {
+  margin-bottom: 1px !important;
+}
+
+.socials {
+  margin-top: 2px;
+}
+
+.whatsapp {
+  right: 24px !important;
+  bottom: 24px !important;
+  width: 64px !important;
+  height: 64px !important;
+  box-shadow: 0 18px 40px rgba(37, 211, 102, 0.42) !important;
+}
+
+.whatsapp .whatsapp-mark svg {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+
+  .footer-columns {
+    justify-content: start !important;
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-columns,
+  .footer-columns > div:first-child {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    grid-auto-flow: row !important;
+  }
+
+  .footer-columns > div:first-child h3 {
+    grid-column: auto;
+  }
+
+  .whatsapp {
+    right: 18px !important;
+    bottom: 18px !important;
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .whatsapp .whatsapp-mark svg {
+    width: 31px !important;
+    height: 31px !important;
+  }
+}
+
+/* Final footer compacting override */
+body .footer {
+  grid-template-columns: minmax(240px, 0.9fr) minmax(480px, 1.1fr) !important;
+  gap: 28px !important;
+  padding-top: 24px !important;
+  padding-bottom: 26px !important;
+  align-items: start !important;
+}
+
+body .footer-brand p {
+  max-width: 310px !important;
+  margin: 10px 0 8px !important;
+  line-height: 1.45 !important;
+}
+
+body .footer-columns {
+  grid-template-columns: max-content max-content !important;
+  justify-content: end !important;
+  align-items: start !important;
+  gap: 36px !important;
+}
+
+body .footer-columns > div:first-child {
+  display: grid !important;
+  grid-template-columns: max-content max-content !important;
+  grid-template-rows: auto repeat(3, auto) !important;
+  grid-auto-flow: column !important;
+  column-gap: 34px !important;
+  row-gap: 8px !important;
+}
+
+body .footer-columns > div:first-child h3 {
+  grid-column: 1 / -1 !important;
+  margin-bottom: 2px !important;
+}
+
+body .footer-columns h3 {
+  margin: 0 0 8px !important;
+}
+
+body .footer-columns a {
+  margin: 0 !important;
+  line-height: 1.35 !important;
+}
+
+body .footer-columns > div:nth-child(2) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+
+body .footer-columns > div:nth-child(2) h3 {
+  margin-bottom: 0 !important;
+}
+
+body .socials {
+  margin-top: 2px !important;
+}
+
+body .whatsapp {
+  right: 24px !important;
+  bottom: 24px !important;
+  width: 64px !important;
+  height: 64px !important;
+  box-shadow: 0 18px 40px rgba(37, 211, 102, 0.42) !important;
+}
+
+body .whatsapp .whatsapp-mark svg {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+@media (max-width: 900px) {
+  body .footer {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  body .footer-columns {
+    justify-content: start !important;
+    grid-template-columns: max-content max-content !important;
+    gap: 28px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body .footer-columns,
+  body .footer-columns > div:first-child {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    grid-auto-flow: row !important;
+  }
+
+  body .footer-columns > div:first-child h3 {
+    grid-column: auto !important;
+  }
+
+  body .whatsapp {
+    right: 18px !important;
+    bottom: 18px !important;
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+body .whatsapp .whatsapp-mark svg {
+    width: 31px !important;
+    height: 31px !important;
+  }
+}
+
+/* Center footer navigation and contact block */
+body .footer {
+  grid-template-columns: minmax(250px, 0.78fr) minmax(520px, 1.22fr) !important;
+  justify-content: center !important;
+}
+
+body .footer-columns {
+  justify-self: center !important;
+  justify-content: center !important;
+}
+
+@media (max-width: 900px) {
+  body .footer-columns {
+    justify-self: start !important;
+    justify-content: start !important;
+  }
+}
+
+/* Keep footer data centered in the page */
+body .footer {
+  grid-template-columns: minmax(260px, 1fr) max-content minmax(260px, 1fr) !important;
+}
+
+body .footer-brand {
+  grid-column: 1 !important;
+  justify-self: start !important;
+}
+
+body .footer-columns {
+  grid-column: 2 !important;
+  justify-self: center !important;
+  justify-content: center !important;
+}
+
+@media (max-width: 900px) {
+  body .footer {
+    grid-template-columns: 1fr !important;
+  }
+
+  body .footer-brand,
+  body .footer-columns {
+    grid-column: auto !important;
+  }
+}
+
+/* Fine tune footer data placement */
+body .footer {
+  grid-template-columns: minmax(320px, 1.12fr) max-content minmax(120px, 0.48fr) !important;
+}
+
+body .footer-columns {
+  gap: clamp(58px, 6vw, 92px) !important;
+  margin-left: clamp(24px, 3vw, 48px) !important;
+}
+
+@media (max-width: 900px) {
+  body .footer-columns {
+    gap: 28px !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* Footer vertical alignment tune */
+body .footer-columns {
+  align-self: start !important;
+  margin-top: 30px !important;
+  margin-left: clamp(76px, 7vw, 116px) !important;
+  gap: clamp(108px, 8vw, 144px) !important;
+}
+
+body .footer-columns > div:first-child,
+body .footer-columns > div:nth-child(2) {
+  align-self: start !important;
+}
+
+body .footer-columns > div:nth-child(2) {
+  padding-top: 0 !important;
+}
+
+@media (max-width: 900px) {
+  body .footer-columns {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    gap: 28px !important;
+  }
+}
+
+/* Contact form compact first-view polish */
+.contact-page .contact-request-section {
+  width: min(1180px, calc(100% - 44px)) !important;
+  margin-bottom: clamp(24px, 3vw, 36px) !important;
+}
+
+.contact-page .contact-request-card {
+  padding: clamp(18px, 2.2vw, 28px) !important;
+  border-radius: 26px !important;
+}
+
+.contact-page .contact-form-note {
+  margin-bottom: 12px !important;
+  font-size: 0.86rem !important;
+}
+
+.contact-page .contact-form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px 14px !important;
+  align-items: start !important;
+}
+
+.contact-page .contact-field {
+  gap: 5px !important;
+}
+
+.contact-page .contact-field span {
+  font-size: 0.84rem !important;
+}
+
+.contact-page .contact-field input,
+.contact-page .contact-field select,
+.contact-page .contact-field textarea {
+  min-height: 48px !important;
+  height: 48px !important;
+  padding: 0 14px !important;
+  border-radius: 13px !important;
+}
+
+.contact-page .contact-field textarea {
+  padding-top: 13px !important;
+  resize: vertical !important;
+}
+
+.contact-page .contact-field small {
+  min-height: 12px !important;
+  font-size: 0.72rem !important;
+}
+
+.contact-page .contact-field-interest,
+.contact-page .contact-field-message {
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+
+.contact-page .contact-form-footer {
+  justify-content: flex-end !important;
+  margin-top: 6px !important;
+  padding-top: 12px !important;
+}
+
+.contact-page .contact-submit-button {
+  min-height: 46px !important;
+  min-width: 188px !important;
+}
+
+.contact-page main > .contact-hub {
+  margin-top: 0 !important;
+  margin-bottom: clamp(34px, 5vw, 54px) !important;
+}
+
+/* True WhatsApp logo treatment */
+.contact-page .contact-whatsapp-mark {
+  color: #ffffff !important;
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.32), transparent 26%),
+    linear-gradient(135deg, #25d366 0%, #20bd5a 45%, #128c7e 100%) !important;
+  box-shadow: 0 18px 42px rgba(37, 211, 102, 0.28) !important;
+}
+
+.contact-page .contact-whatsapp-mark svg,
+.contact-page .contact-whatsapp-mark svg path {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+@media (max-width: 900px) {
+  .contact-page .contact-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-page .contact-field textarea {
+    min-height: 92px !important;
+    height: 92px !important;
+  }
+}
+
