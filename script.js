@@ -13,6 +13,28 @@ const openContactInstructionsButtons = [...document.querySelectorAll("[data-open
 const closeContactInstructionsButtons = [...document.querySelectorAll("[data-close-contact-instructions]")];
 const contactForms = [...document.querySelectorAll("[data-contact-form]")];
 const eventsGalleryRoot = document.querySelector("[data-events-gallery]");
+const governanceRevealItems = [...document.querySelectorAll("[data-governance-reveal]")];
+const governanceJumpLinks = [...document.querySelectorAll(".governance-jump-nav a[href^='#']")];
+const governanceJumpShell = document.querySelector(".governance-jump-shell");
+const GOVERNANCE_CONTACTS = Object.freeze({
+  dpoEmail: "encarregado_dpo@idvlabs.com.br"
+});
+const COOKIE_CONSENT_KEY = "dvgenesis_cookie_consent";
+const COOKIE_POLICY_VERSION = "1.0";
+const COOKIE_CATEGORIES = Object.freeze(["analytics", "functional", "marketing"]);
+
+/*
+ * Technology map (audit 2026-08-28):
+ * - script.js and local visual assets -> essential -> always available; no cookies.
+ * - localStorage preference record -> essential -> written only after an explicit choice.
+ * - outbound social, WhatsApp and product links -> external navigation -> contacted only after a click.
+ * - analytics, optional functional embeds and marketing -> not configured.
+ * Future non-essential scripts must use type="text/plain", data-cookie-category and data-cookie-src.
+ * Future embeds must omit src and use data-cookie-embed, data-cookie-category and data-cookie-src.
+ */
+
+let cookieConsentState = null;
+let cookieConsentReturnFocus = null;
 
 document.documentElement.classList.add("js-enabled");
 
@@ -334,6 +356,44 @@ const fallbackIcons = {
   "triangle-alert": '<path d="m21.7 18.4-8.9-15a1 1 0 0 0-1.7 0l-8.9 15A1 1 0 0 0 3 20h18a1 1 0 0 0 .7-1.6Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
   "user-round-check": '<path d="M2 21a8 8 0 0 1 13.3-6"/><circle cx="10" cy="8" r="5"/><path d="m16 19 2 2 4-4"/>',
   "users-round": '<path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 21a8 8 0 0 0-6-7.7"/><path d="M16 3.1a5 5 0 0 1 0 9.8"/>',
+  "accessibility": '<circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.4 3.4"/><path d="M4.2 14.3A7 7 0 1 0 15 18"/>',
+  "activity": '<path d="M3 12h4l3-9 4 18 3-9h4"/>',
+  "arrow-down": '<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>',
+  "book-open-check": '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V5a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v15a3 3 0 0 0-3-3Z"/><path d="M21 15V5a2 2 0 0 0-2-2h-5a3 3 0 0 0-3 3"/><path d="m16 10 1.5 1.5L20 9"/>',
+  "brain": '<path d="M9.5 4A3.5 3.5 0 0 0 6 7.5v.3A3.5 3.5 0 0 0 4 14a3.5 3.5 0 0 0 5.5 4.2"/><path d="M14.5 4A3.5 3.5 0 0 1 18 7.5v.3A3.5 3.5 0 0 1 20 14a3.5 3.5 0 0 1-5.5 4.2"/><path d="M12 3v18"/>',
+  "briefcase-business": '<rect width="20" height="14" x="2" y="7" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M2 13h20"/><path d="M10 13v2h4v-2"/>',
+  "calendar-clock": '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><circle cx="15" cy="16" r="4"/><path d="M15 14v2l1.5 1"/>',
+  "check": '<path d="m20 6-11 11-5-5"/>',
+  "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  "contact-round": '<path d="M16 2v2"/><path d="M8 2v2"/><rect width="18" height="18" x="3" y="4" rx="2"/><circle cx="12" cy="10" r="2"/><path d="M8 17a4 4 0 0 1 8 0"/>',
+  "copy": '<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',
+  "earth": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/>',
+  "eraser": '<path d="m7 21-4-4a2 2 0 0 1 0-3L13 4a2 2 0 0 1 3 0l4 4a2 2 0 0 1 0 3L10 21Z"/><path d="m6 11 7 7"/><path d="M7 21h13"/>',
+  "file-chart-column": '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 18v-3"/><path d="M12 18v-6"/><path d="M16 18v-4"/>',
+  "file-pen-line": '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="m9 17 1.5-.3 6-6-1.2-1.2-6 6Z"/>',
+  "folder-search-2": '<path d="M3 19V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v4"/><circle cx="15" cy="17" r="4"/><path d="m18 20 3 3"/>',
+  "gauge": '<path d="M20.5 19a9 9 0 1 0-17 0"/><path d="M12 12 16 8"/><path d="M8 19h8"/>',
+  "help-circle": '<circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.7 2.7 0 1 1 4.6 2c-1.1.9-2.1 1.4-2.1 3"/><path d="M12 18h.01"/>',
+  "key-round": '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m12 12 8-8"/><path d="m15 9 3 3"/><path d="m17 7 3 3"/>',
+  "landmark": '<path d="m3 10 9-6 9 6"/><path d="M5 10v8"/><path d="M9 10v8"/><path d="M15 10v8"/><path d="M19 10v8"/><path d="M3 18h18"/><path d="M2 22h20"/>',
+  "lightbulb": '<path d="M9 18h6"/><path d="M10 22h4"/><path d="M8.5 14.5a7 7 0 1 1 7 0c-.9.7-1.5 1.8-1.5 3.5h-4c0-1.7-.6-2.8-1.5-3.5Z"/>',
+  "list-filter": '<path d="M3 6h18"/><path d="M6 12h12"/><path d="M10 18h4"/>',
+  "mail": '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/>',
+  "megaphone": '<path d="m3 11 18-5v12L3 14Z"/><path d="M11.6 16.6 13 21H7l-1.2-6"/><path d="M3 11v3"/>',
+  "message-square-more": '<path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/>',
+  "messages-square": '<path d="M14 17H7l-4 3V6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3Z"/><path d="M17 8h1a3 3 0 0 1 3 3v10l-4-3"/>',
+  "presentation": '<path d="M2 3h20"/><path d="M4 3v13h16V3"/><path d="M8 21l4-5 4 5"/><path d="M8 11l3-3 2 2 3-3"/>',
+  "recycle": '<path d="m7.3 7.3 2.4-4 2.3 4"/><path d="M9.7 3.3 6 9.5"/><path d="m16.7 7.3 4.6.1-2.3 4"/><path d="M21.3 7.4 17.7 14"/><path d="m15 18.5-2.3 4-2.4-4"/><path d="M12.7 22.5h-7l-3.5-6 2.3-4"/><path d="M18.9 11.5 22 17l-2 3.5h-5"/>',
+  "route": '<circle cx="6" cy="19" r="3"/><circle cx="18" cy="5" r="3"/><path d="M6 16c0-5 12-3 12-8"/>',
+  "scale": '<path d="m16 16 3-8 3 8a5 5 0 0 1-6 0Z"/><path d="m2 16 3-8 3 8a5 5 0 0 1-6 0Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h18"/>',
+  "scan-eye": '<path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M6 12s2-4 6-4 6 4 6 4-2 4-6 4-6-4-6-4Z"/><circle cx="12" cy="12" r="2"/>',
+  "scan-search": '<path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="11" cy="11" r="4"/><path d="m14 14 3 3"/>',
+  "shield": '<path d="M20 13c0 5-3.5 7.5-7.7 8.9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.5a1.3 1.3 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1Z"/>',
+  "shield-cog": '<path d="M12 22c4-1.4 8-4 8-9V6c-3.5 0-6-1.5-8-3-2 1.5-4.5 3-8 3v7c0 5 4 7.6 8 9Z"/><circle cx="12" cy="12" r="2"/><path d="M12 8v2M12 14v2M8 12h2M14 12h2"/>',
+  "sliders-horizontal": '<path d="M21 4h-7"/><path d="M10 4H3"/><path d="M21 12h-9"/><path d="M8 12H3"/><path d="M21 20h-5"/><path d="M12 20H3"/><circle cx="12" cy="4" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="14" cy="20" r="2"/>',
+  "undo-2": '<path d="M9 7 4 12l5 5"/><path d="M20 17a7 7 0 0 0-7-7H4"/>',
+  "user-round": '<circle cx="12" cy="8" r="5"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  "users": '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>',
   "x": '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
   "youtube": '<path d="M2.5 17a24.7 24.7 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.7 24.7 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>'
 };
@@ -832,7 +892,7 @@ function initContactForms() {
       .map((name) => `${fieldLabels[name]}:\n${getValue(form, name) || "-"}`)
       .join("\n\n");
 
-    const subject = encodeURIComponent("Contato pelo site | IDVLabs");
+    const subject = encodeURIComponent("Contato pelo site | DVGenesis");
     return `mailto:comercial@idvlabs.com.br?subject=${subject}&body=${encodeURIComponent(body)}`;
   };
 
@@ -893,8 +953,572 @@ function renderEventsGallery() {
     .join("");
 }
 
+function hasCookieTechnology(category) {
+  return Boolean(
+    document.querySelector(
+      `[data-cookie-category="${category}"][data-cookie-src], ` +
+        `[data-cookie-category="${category}"][data-cookie-embed], ` +
+        `script[type="text/plain"][data-cookie-category="${category}"]`
+    )
+  );
+}
+
+function getCookieCategoryAvailability() {
+  return Object.fromEntries(COOKIE_CATEGORIES.map((category) => [category, hasCookieTechnology(category)]));
+}
+
+function normalizeCookieConsent(value) {
+  if (!value || value.version !== COOKIE_POLICY_VERSION || value.essential !== true) return null;
+
+  return {
+    version: COOKIE_POLICY_VERSION,
+    timestamp: typeof value.timestamp === "string" ? value.timestamp : null,
+    essential: true,
+    analytics: value.analytics === true,
+    functional: value.functional === true,
+    marketing: value.marketing === true
+  };
+}
+
+function readCookieConsent() {
+  try {
+    return normalizeCookieConsent(JSON.parse(window.localStorage.getItem(COOKIE_CONSENT_KEY)));
+  } catch {
+    return null;
+  }
+}
+
+function persistCookieConsent(selection) {
+  const availability = getCookieCategoryAvailability();
+  const consent = {
+    version: COOKIE_POLICY_VERSION,
+    timestamp: new Date().toISOString(),
+    essential: true,
+    analytics: availability.analytics && selection.analytics === true,
+    functional: availability.functional && selection.functional === true,
+    marketing: availability.marketing && selection.marketing === true
+  };
+
+  cookieConsentState = consent;
+
+  try {
+    window.localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
+  } catch {
+    // The preference still applies to this page when storage is unavailable.
+  }
+
+  document.documentElement.dataset.cookieConsent = "saved";
+  return consent;
+}
+
+function copyAllowedScriptAttributes(source, target) {
+  [...source.attributes].forEach((attribute) => {
+    if (
+      attribute.name === "type" ||
+      attribute.name === "src" ||
+      attribute.name.startsWith("data-cookie-")
+    ) {
+      return;
+    }
+    target.setAttribute(attribute.name, attribute.value);
+  });
+}
+
+function activateCookieScripts(category) {
+  document
+    .querySelectorAll(`script[type="text/plain"][data-cookie-category="${category}"]:not([data-cookie-activated])`)
+    .forEach((placeholder) => {
+      const script = document.createElement("script");
+      const source = placeholder.dataset.cookieSrc;
+
+      copyAllowedScriptAttributes(placeholder, script);
+      script.dataset.cookieLoaded = category;
+
+      if (source) {
+        script.src = source;
+      } else {
+        script.textContent = placeholder.textContent;
+      }
+
+      placeholder.dataset.cookieActivated = "true";
+      placeholder.after(script);
+    });
+}
+
+function activateCookieEmbeds(category) {
+  document
+    .querySelectorAll(`[data-cookie-embed][data-cookie-category="${category}"]:not([data-cookie-activated])`)
+    .forEach((placeholder) => {
+      const source = placeholder.dataset.cookieSrc;
+      if (!source) return;
+
+      const frame = document.createElement("iframe");
+      frame.src = source;
+      frame.title = placeholder.dataset.cookieTitle || "Conteúdo externo";
+      frame.loading = "lazy";
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.allowFullscreen = placeholder.dataset.cookieAllowFullscreen === "true";
+      frame.dataset.cookieLoaded = category;
+
+      if (placeholder.dataset.cookieAllow) {
+        frame.setAttribute("allow", placeholder.dataset.cookieAllow);
+      }
+
+      placeholder.dataset.cookieActivated = "true";
+      placeholder.classList.add("is-cookie-content-enabled");
+      placeholder.append(frame);
+    });
+}
+
+function activateCookieCategory(category) {
+  activateCookieScripts(category);
+  activateCookieEmbeds(category);
+}
+
+function clearConfiguredCookies(category) {
+  const names = new Set();
+
+  document.querySelectorAll(`[data-cookie-category="${category}"][data-cookie-clear]`).forEach((element) => {
+    element.dataset.cookieClear
+      .split(",")
+      .map((name) => name.trim())
+      .filter(Boolean)
+      .forEach((name) => names.add(name));
+  });
+
+  names.forEach((name) => {
+    document.cookie = `${encodeURIComponent(name)}=; Max-Age=0; path=/; SameSite=Lax`;
+  });
+}
+
+function deactivateCookieCategory(category) {
+  const hadRegisteredTechnology = hasCookieTechnology(category);
+
+  document.querySelectorAll(`[data-cookie-loaded="${category}"]`).forEach((element) => element.remove());
+  document.querySelectorAll(`[data-cookie-category="${category}"][data-cookie-activated]`).forEach((element) => {
+    element.removeAttribute("data-cookie-activated");
+    element.classList.remove("is-cookie-content-enabled");
+  });
+  clearConfiguredCookies(category);
+
+  return hadRegisteredTechnology;
+}
+
+function applyCookieConsent(consent) {
+  COOKIE_CATEGORIES.forEach((category) => {
+    if (consent?.[category] === true) {
+      activateCookieCategory(category);
+    }
+  });
+}
+
+function cookieCategoryMarkup({ id, title, description, required = false, available = true }) {
+  const control = required
+    ? '<span class="cookie-category-required">Sempre ativo</span>'
+    : `<label class="cookie-switch">
+        <span class="sr-only">Permitir ${title}</span>
+        <input type="checkbox" data-cookie-toggle="${id}"${available ? "" : " disabled"} />
+        <span class="cookie-switch-track" aria-hidden="true"><span></span></span>
+      </label>`;
+  const status = !required && !available
+    ? '<p class="cookie-category-status">Nenhum serviço desta categoria está configurado atualmente.</p>'
+    : "";
+
+  return `
+    <article class="cookie-category${available || required ? "" : " is-unavailable"}" data-cookie-panel-category="${id}">
+      <div class="cookie-category-copy">
+        <h3>${title}</h3>
+        <p>${description}</p>
+        ${status}
+      </div>
+      ${control}
+    </article>
+  `;
+}
+
+function buildCookieConsentInterface() {
+  if (document.querySelector("[data-cookie-consent-root]")) return;
+
+  const availability = getCookieCategoryAvailability();
+  const root = document.createElement("div");
+  root.className = "cookie-consent-root";
+  root.dataset.cookieConsentRoot = "";
+  root.innerHTML = `
+    <section class="cookie-banner" data-cookie-banner hidden role="region" aria-labelledby="cookie-banner-title">
+      <div class="cookie-banner-accent" aria-hidden="true"></div>
+      <p class="cookie-banner-kicker">Privacidade e transparência</p>
+      <h2 id="cookie-banner-title">Sua privacidade importa</h2>
+      <p>
+        Utilizamos cookies necessários para o funcionamento do site e, com sua autorização, cookies de análise e
+        outras tecnologias para entender como nosso site é utilizado e melhorar sua experiência. Você pode aceitar
+        todos, recusar os cookies não essenciais ou gerenciar suas preferências.
+      </p>
+      <p class="cookie-banner-links">
+        <a href="politica-de-privacidade.html">Política de Privacidade</a>
+        <a href="politica-de-cookies.html">Política de Cookies</a>
+      </p>
+      <div class="cookie-banner-actions">
+        <button class="cookie-button cookie-button--primary" type="button" data-cookie-accept-all>Aceitar todos</button>
+        <button class="cookie-button cookie-button--secondary" type="button" data-cookie-reject>Recusar não essenciais</button>
+        <button class="cookie-button cookie-button--ghost" type="button" data-cookie-manage>Gerenciar preferências</button>
+      </div>
+    </section>
+
+    <div class="cookie-modal-backdrop" data-cookie-modal hidden>
+      <section
+        class="cookie-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-modal-title"
+        aria-describedby="cookie-modal-description"
+        tabindex="-1"
+      >
+        <button class="cookie-modal-close" type="button" data-cookie-close aria-label="Fechar preferências de cookies">×</button>
+        <div class="cookie-modal-header">
+          <p class="cookie-modal-kicker">Controle e transparência</p>
+          <h2 id="cookie-modal-title">Preferências de Cookies</h2>
+          <p id="cookie-modal-description">
+            Você controla como seus dados são utilizados. Escolha abaixo quais categorias de cookies deseja permitir.
+          </p>
+        </div>
+        <div class="cookie-categories">
+          ${cookieCategoryMarkup({
+            id: "essential",
+            title: "Cookies Essenciais",
+            description: "São necessários para o funcionamento adequado e seguro do site e não podem ser desativados através deste painel.",
+            required: true
+          })}
+          ${cookieCategoryMarkup({
+            id: "analytics",
+            title: "Cookies de Análise e Desempenho",
+            description: "Nos ajudam a entender como os visitantes utilizam o site, permitindo analisar desempenho, navegação e oportunidades de melhoria.",
+            available: availability.analytics
+          })}
+          ${cookieCategoryMarkup({
+            id: "functional",
+            title: "Cookies Funcionais",
+            description: "Permitem recursos adicionais e podem lembrar determinadas preferências do visitante.",
+            available: availability.functional
+          })}
+          ${availability.marketing
+            ? cookieCategoryMarkup({
+                id: "marketing",
+                title: "Cookies de Marketing",
+                description: "Podem ser utilizados para medir campanhas, compreender interações com conteúdos e tornar comunicações mais relevantes.",
+                available: true
+              })
+            : ""}
+        </div>
+        <p class="cookie-modal-audit-note"${availability.analytics || availability.functional || availability.marketing ? " hidden" : ""}>
+          A auditoria atual do site não identificou serviços não essenciais ativos. Suas escolhas ficarão preparadas para
+          futuras integrações e poderão ser alteradas a qualquer momento.
+        </p>
+        <div class="cookie-modal-actions">
+          <button class="cookie-button cookie-button--primary" type="button" data-cookie-save>Salvar preferências</button>
+          <button class="cookie-button cookie-button--secondary" type="button" data-cookie-modal-accept-all>Aceitar todos</button>
+          <button class="cookie-button cookie-button--ghost" type="button" data-cookie-modal-reject>Recusar não essenciais</button>
+        </div>
+      </section>
+    </div>
+  `;
+
+  document.body.append(root);
+}
+
+function setCookieBannerVisibility(visible) {
+  const banner = document.querySelector("[data-cookie-banner]");
+  if (!banner) return;
+
+  if (visible) {
+    banner.hidden = false;
+    window.requestAnimationFrame(() => banner.classList.add("is-visible"));
+    return;
+  }
+
+  banner.classList.remove("is-visible");
+  window.setTimeout(() => {
+    banner.hidden = true;
+  }, 260);
+}
+
+function updateCookieModalControls() {
+  const availability = getCookieCategoryAvailability();
+  const base = cookieConsentState || {
+    essential: true,
+    analytics: false,
+    functional: false,
+    marketing: false
+  };
+
+  COOKIE_CATEGORIES.forEach((category) => {
+    const input = document.querySelector(`[data-cookie-toggle="${category}"]`);
+    if (!input) return;
+    input.disabled = !availability[category];
+    input.checked = availability[category] && base[category] === true;
+  });
+}
+
+function getCookieModalFocusables() {
+  const modal = document.querySelector("[data-cookie-modal]");
+  if (!modal || modal.hidden) return [];
+
+  return [...modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+    .filter((element) => !element.hidden && element.getClientRects().length > 0);
+}
+
+function openCookiePreferences(trigger = document.activeElement) {
+  const modal = document.querySelector("[data-cookie-modal]");
+  if (!modal) return;
+
+  cookieConsentReturnFocus = trigger instanceof HTMLElement ? trigger : null;
+  updateCookieModalControls();
+  modal.hidden = false;
+  document.body.classList.add("cookie-modal-open");
+  window.requestAnimationFrame(() => {
+    modal.classList.add("is-visible");
+    modal.querySelector(".cookie-modal")?.focus();
+  });
+}
+
+function closeCookiePreferences({ restoreFocus = true } = {}) {
+  const modal = document.querySelector("[data-cookie-modal]");
+  if (!modal || modal.hidden) return;
+
+  modal.classList.remove("is-visible");
+  document.body.classList.remove("cookie-modal-open");
+  window.setTimeout(() => {
+    modal.hidden = true;
+    if (restoreFocus && cookieConsentReturnFocus?.isConnected) {
+      cookieConsentReturnFocus.focus();
+    }
+  }, 220);
+}
+
+function saveCookieChoice(selection) {
+  const previous = cookieConsentState;
+  let requiresReload = false;
+
+  COOKIE_CATEGORIES.forEach((category) => {
+    if (previous?.[category] === true && selection[category] !== true) {
+      requiresReload = deactivateCookieCategory(category) || requiresReload;
+    }
+  });
+
+  const consent = persistCookieConsent(selection);
+  applyCookieConsent(consent);
+  setCookieBannerVisibility(false);
+  closeCookiePreferences();
+
+  window.dispatchEvent(new CustomEvent("dvgenesis:consentchange", { detail: { ...consent } }));
+
+  if (requiresReload) {
+    window.setTimeout(() => window.location.reload(), 260);
+  }
+}
+
+function acceptAllCookies() {
+  const availability = getCookieCategoryAvailability();
+  saveCookieChoice({
+    essential: true,
+    analytics: availability.analytics,
+    functional: availability.functional,
+    marketing: availability.marketing
+  });
+}
+
+function rejectNonEssentialCookies() {
+  saveCookieChoice({ essential: true, analytics: false, functional: false, marketing: false });
+}
+
+function saveCookieModalPreferences() {
+  const availability = getCookieCategoryAvailability();
+  const selection = { essential: true };
+
+  COOKIE_CATEGORIES.forEach((category) => {
+    const input = document.querySelector(`[data-cookie-toggle="${category}"]`);
+    selection[category] = Boolean(availability[category] && input?.checked);
+  });
+
+  saveCookieChoice(selection);
+}
+
+function handleCookieModalKeyboard(event) {
+  const modal = document.querySelector("[data-cookie-modal]");
+  if (!modal || modal.hidden) return;
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    event.stopPropagation();
+    closeCookiePreferences();
+    return;
+  }
+
+  if (event.key !== "Tab") return;
+
+  const focusable = getCookieModalFocusables();
+  if (!focusable.length) {
+    event.preventDefault();
+    modal.querySelector(".cookie-modal")?.focus();
+    return;
+  }
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function initCookieConsent() {
+  buildCookieConsentInterface();
+  cookieConsentState = readCookieConsent();
+
+  if (cookieConsentState) {
+    document.documentElement.dataset.cookieConsent = "saved";
+    applyCookieConsent(cookieConsentState);
+  } else {
+    document.documentElement.dataset.cookieConsent = "pending";
+    setCookieBannerVisibility(true);
+  }
+
+  document.querySelectorAll("[data-cookie-accept-all], [data-cookie-modal-accept-all]").forEach((button) => {
+    button.addEventListener("click", acceptAllCookies);
+  });
+  document.querySelectorAll("[data-cookie-reject], [data-cookie-modal-reject]").forEach((button) => {
+    button.addEventListener("click", rejectNonEssentialCookies);
+  });
+  document.querySelector("[data-cookie-save]")?.addEventListener("click", saveCookieModalPreferences);
+  document.querySelector("[data-cookie-close]")?.addEventListener("click", () => closeCookiePreferences());
+  document.querySelector("[data-cookie-manage]")?.addEventListener("click", (event) => {
+    openCookiePreferences(event.currentTarget);
+  });
+  document.querySelectorAll("[data-cookie-preferences]").forEach((button) => {
+    button.addEventListener("click", (event) => openCookiePreferences(event.currentTarget));
+  });
+  document.querySelector("[data-cookie-modal]")?.addEventListener("click", (event) => {
+    if (event.target === event.currentTarget) closeCookiePreferences();
+  });
+  document.addEventListener("keydown", handleCookieModalKeyboard, true);
+  document.addEventListener("click", (event) => {
+    const allowButton = event.target.closest("[data-cookie-allow]");
+    if (!allowButton) return;
+
+    const category = allowButton.dataset.cookieAllow;
+    if (!COOKIE_CATEGORIES.includes(category) || !hasCookieTechnology(category)) return;
+
+    saveCookieChoice({
+      essential: true,
+      analytics: category === "analytics" || cookieConsentState?.analytics === true,
+      functional: category === "functional" || cookieConsentState?.functional === true,
+      marketing: category === "marketing" || cookieConsentState?.marketing === true
+    });
+  });
+
+  window.DVGenesisConsent = Object.freeze({
+    openPreferences: () => openCookiePreferences(),
+    getPreferences: () => (cookieConsentState ? { ...cookieConsentState } : null),
+    isAllowed: (category) => category === "essential" || cookieConsentState?.[category] === true
+  });
+}
+
 function paintHeader() {
-  header.classList.toggle("scrolled", window.scrollY > 16);
+  header?.classList.toggle("scrolled", window.scrollY > 16);
+}
+
+function initGovernanceContact() {
+  document.querySelectorAll("[data-dpo-email]").forEach((link) => {
+    link.textContent = GOVERNANCE_CONTACTS.dpoEmail;
+    link.setAttribute("href", `mailto:${GOVERNANCE_CONTACTS.dpoEmail}`);
+  });
+}
+
+function initGovernanceReveals() {
+  if (!governanceRevealItems.length) return;
+
+  const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    governanceRevealItems.forEach((target) => target.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.1
+    }
+  );
+
+  governanceRevealItems.forEach((target) => observer.observe(target));
+}
+
+function initGovernanceJumpNavigation() {
+  if (!governanceJumpLinks.length || !("IntersectionObserver" in window)) return;
+
+  const sections = governanceJumpLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  const linkById = new Map(
+    governanceJumpLinks.map((link) => [link.getAttribute("href").slice(1), link])
+  );
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visibleEntry) return;
+
+      governanceJumpLinks.forEach((link) => link.classList.remove("is-active"));
+      linkById.get(visibleEntry.target.id)?.classList.add("is-active");
+    },
+    {
+      rootMargin: "-28% 0px -60% 0px",
+      threshold: [0, 0.1, 0.5]
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+function initGovernanceStickyNavigation() {
+  if (!governanceJumpShell) return;
+
+  let pinStart = governanceJumpShell.getBoundingClientRect().top + window.scrollY;
+
+  const updatePinnedState = () => {
+    const headerOffset = window.innerWidth <= 720 ? 80 : 92;
+    const shouldPin = window.scrollY + headerOffset >= pinStart;
+    governanceJumpShell.classList.toggle("is-fixed", shouldPin);
+    document.body.classList.toggle("has-fixed-governance-nav", shouldPin);
+  };
+
+  const measurePinStart = () => {
+    governanceJumpShell.classList.remove("is-fixed");
+    document.body.classList.remove("has-fixed-governance-nav");
+    pinStart = governanceJumpShell.getBoundingClientRect().top + window.scrollY;
+    updatePinnedState();
+  };
+
+  window.addEventListener("scroll", updatePinnedState, { passive: true });
+  window.addEventListener("resize", measurePinStart);
+  updatePinnedState();
 }
 
 window.addEventListener("scroll", paintHeader, { passive: true });
@@ -918,6 +1542,7 @@ nav?.addEventListener("click", (event) => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
+  initCookieConsent();
   renderClientCarousel();
   initClientMarqueePause();
   renderIcons();
@@ -929,6 +1554,10 @@ window.addEventListener("DOMContentLoaded", () => {
   initEmailTemplateCopy();
   initContactInstructionsModal();
   initContactForms();
+  initGovernanceContact();
+  initGovernanceReveals();
+  initGovernanceJumpNavigation();
+  initGovernanceStickyNavigation();
   renderEventsGallery();
   renderIcons();
 });
