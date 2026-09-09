@@ -1,0 +1,461 @@
+/* DVGenesis: proportional mobile corrections.
+ * Loaded after styles.css and timeline.css. Desktop rules are untouched.
+ * !important is required to override the existing responsive stability layer.
+ */
+@media (max-width: 1024px) {
+  header.topbar,
+  header.topbar.open {
+    grid-template-columns: minmax(0, 1fr) auto auto !important;
+    gap: 10px !important;
+    padding: 10px 12px !important;
+    max-height: calc(100dvh - 20px);
+    overflow-y: auto;
+  }
+
+  header.topbar .logo.reference-logo {
+    width: clamp(112px, 30vw, 190px) !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    height: clamp(32px, 8vw, 48px) !important;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  header.topbar .logo.reference-logo img {
+    object-fit: contain !important;
+  }
+
+  header.topbar .menu-button {
+    display: inline-flex !important;
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    width: 38px;
+    min-width: 38px;
+    height: 40px;
+    padding: 7px;
+    justify-content: center;
+  }
+
+  header.topbar .header-actions,
+  header.topbar.open .header-actions {
+    display: flex !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: auto !important;
+    min-width: 0;
+    padding: 0 !important;
+  }
+
+  header.topbar .header-actions .header-cta {
+    width: auto !important;
+    min-width: 0;
+    min-height: 40px;
+    padding: 10px 12px !important;
+    gap: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  header.topbar .main-nav {
+    display: none !important;
+  }
+
+  header.topbar.open .main-nav {
+    position: static !important;
+    display: grid !important;
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    min-width: 0;
+    gap: 0 !important;
+    padding: 8px 0 0 !important;
+  }
+
+  header.topbar.open .main-nav a {
+    min-width: 0;
+    padding: 12px 0 !important;
+    text-align: left;
+  }
+
+  .contact-page .contact-card-content,
+  .contact-page .contact-field,
+  .contact-page .contact-channel-top > div {
+    min-width: 0;
+  }
+
+  .contact-page .contact-value,
+  .governance-contact a[data-dpo-email] {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .contact-page .contact-field input,
+  .contact-page .contact-field select,
+  .contact-page .contact-field textarea {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  body .footer-columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: clamp(16px, 3vw, 28px) !important;
+    min-width: 0;
+  }
+
+  body .footer-columns > .footer-group a,
+  body .footer-columns > .footer-group .footer-cookie-preferences {
+    max-width: 100%;
+    overflow-wrap: anywhere !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] {
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+  }
+
+  /* Full-bleed background relative to its container, without 100vw. */
+  .home-page main > .metric-shell[data-metrics]::before {
+    width: calc(100% + 32px);
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    min-height: 0 !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar article {
+    padding: 20px 8px !important;
+    border-bottom: 0 !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar strong {
+    font-size: clamp(24px, 4vw, 42px) !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar span {
+    margin-top: 10px !important;
+    font-size: clamp(10px, 1.4vw, 12px) !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar article:not(:last-child)::after {
+    display: block !important;
+  }
+}
+
+/* Keep two readable columns on tablets before stacking phone cards. */
+@media (min-width: 601px) and (max-width: 768px) {
+  .pillar-grid,
+  .content-grid,
+  .communication-grid,
+  .mission-grid,
+  .value-real-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page .hero#inicio {
+    min-height: 0 !important;
+  }
+
+  .home-page .hero#inicio .hero-inner {
+    min-height: 0 !important;
+    padding-top: 100px !important;
+    padding-bottom: 88px !important;
+  }
+
+  .home-page .hero#inicio .hero-copy h1 {
+    font-size: clamp(34px, 9.5vw, 58px) !important;
+  }
+
+  .home-page .hero#inicio .hero-actions .button {
+    width: fit-content !important;
+    max-width: 100% !important;
+  }
+
+  .home-page .section-head h2 {
+    font-size: clamp(28px, 7.5vw, 44px) !important;
+  }
+
+  /* The hero is one existing image: let it establish its own height. */
+  .communication-page .communication-hero.communication-hero-full {
+    aspect-ratio: auto;
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+
+  .communication-page .communication-hero-full-image {
+    position: static;
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .communication-page .communication-hero-overlay {
+    position: relative;
+    inset: auto;
+    padding: 12px;
+  }
+
+  .communication-page .communication-hero-overlay .communication-newsletter {
+    position: static;
+    width: 100%;
+    margin: 0;
+  }
+
+  .communication-page .communication-newsletter-button {
+    width: fit-content !important;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .communication-page .communication-newsletter-button svg {
+    flex-shrink: 0;
+  }
+
+  .services-page .classic-pillar-timeline {
+    position: relative;
+  }
+
+  .services-page .classic-pillar-timeline::before {
+    display: block !important;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+
+  .services-page .classic-pillar-row {
+    position: relative;
+    min-height: 0;
+    padding-left: 40px;
+  }
+
+  .services-page .classic-pillar-marker {
+    position: absolute;
+    display: grid !important;
+    left: 0;
+    top: 4px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .services-page .classic-pillar-image {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .services-page .classic-pillar-image img {
+    display: block;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .events-page .events-gallery-feature-content {
+    --feature-copy-offset: 0px;
+  }
+
+  .events-page .events-gallery-feature-link {
+    margin-top: 20px !important;
+  }
+
+  body .footer-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body .footer-columns > .footer-contact {
+    grid-column: 1 / -1 !important;
+  }
+
+  body .footer-columns > .footer-navigation {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto !important;
+    grid-auto-flow: row !important;
+  }
+
+  /* Remove inherited desktop timeline rows and retain years, dots and line. */
+  .timeline-reference[data-timeline] .timeline-classic {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: none;
+    gap: 20px !important;
+    min-height: 0;
+    padding: 0 !important;
+  }
+
+  .timeline-reference[data-timeline] .timeline-line {
+    display: block !important;
+    top: 20px;
+    bottom: 20px;
+    left: 24px;
+    right: auto;
+    width: 3px;
+    height: auto;
+  }
+
+  .timeline-reference[data-timeline] .timeline-event {
+    display: grid !important;
+    grid-template-columns: 50px minmax(0, 1fr) !important;
+    grid-template-rows: auto !important;
+    align-items: start !important;
+    gap: 12px !important;
+    min-height: 0 !important;
+  }
+
+  .timeline-reference[data-timeline] .timeline-event .timeline-card {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: start;
+    margin: 0;
+    padding: 16px;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+
+  .timeline-reference[data-timeline] .timeline-card::before {
+    content: none;
+  }
+
+  .timeline-reference[data-timeline] .timeline-card h3 {
+    font-size: 0.94rem;
+  }
+
+  .timeline-reference[data-timeline] .timeline-card p {
+    font-size: 0.84rem;
+  }
+
+  .timeline-reference[data-timeline] .timeline-marker {
+    display: block !important;
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 50px;
+    height: 66px;
+    transform: none !important;
+  }
+
+  .timeline-reference[data-timeline] .timeline-dot {
+    top: 20px;
+    left: 50%;
+  }
+
+  .timeline-reference[data-timeline] .timeline-event .timeline-year {
+    top: 40px;
+    bottom: auto;
+    left: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  header.topbar,
+  header.topbar.open {
+    gap: 6px !important;
+    padding: 8px !important;
+  }
+
+  header.topbar .header-actions .header-cta {
+    padding: 10px 8px !important;
+    font-size: 11px;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar article {
+    padding: 18px 10px !important;
+    border-bottom: 1px solid rgba(16, 32, 68, 0.1) !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar article:nth-child(even)::after {
+    display: none !important;
+  }
+
+  .home-page main > .metric-shell[data-metrics] .metric-bar article:last-child {
+    grid-column: 1 / -1;
+    border-bottom: 0 !important;
+  }
+
+  .governance-page .governance-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .governance-page .governance-card-grid > :last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .contact-page .contact-value {
+    font-size: 1rem !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-page .hero#inicio .hero-copy p {
+    font-size: 15px !important;
+  }
+
+  .timeline-reference[data-timeline] .timeline-event {
+    grid-template-columns: 44px minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .timeline-reference[data-timeline] .timeline-marker {
+    width: 44px;
+  }
+
+  .timeline-reference[data-timeline] .timeline-line {
+    left: 21px;
+  }
+
+  .timeline-reference[data-timeline] .timeline-event .timeline-card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  header.topbar .logo.reference-logo {
+    width: 112px !important;
+  }
+
+  .services-page .classic-pillar-row {
+    padding-left: 32px;
+  }
+
+  .services-page .classic-pillar-marker {
+    width: 24px;
+    height: 24px;
+  }
+
+  .services-page .classic-pillar-timeline::before {
+    left: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .home-page .hero#inicio .hero-copy h1 {
+    font-size: 34px !important;
+  }
+
+  .events-page .events-gallery-feature-heading {
+    grid-template-columns: 40px minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .events-page .events-gallery-feature-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
