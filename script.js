@@ -893,7 +893,7 @@ function initContactForms() {
       .join("\n\n");
 
     const subject = encodeURIComponent("Contato pelo site | DVGenesis");
-    return `mailto:comercial@idvlabs.com.br?subject=${subject}&body=${encodeURIComponent(body)}`;
+    return `mailto:contato@dvgenesis.com?subject=${subject}&body=${encodeURIComponent(body)}`;
   };
 
   contactForms.forEach((form) => {
