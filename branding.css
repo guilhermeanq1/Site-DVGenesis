@@ -1,0 +1,7 @@
+/* Clean DVGenesis wordmark in the header and footer. */
+header.topbar .logo.reference-logo img[src$="dvgenesis-logo-clean.png"],
+.footer .footer-brand .logo.reference-logo img[src$="dvgenesis-logo-clean.png"] {
+  object-fit: cover !important;
+  filter: none !important;
+  mix-blend-mode: multiply;
+}
