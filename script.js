@@ -17,7 +17,7 @@ const governanceRevealItems = [...document.querySelectorAll("[data-governance-re
 const governanceJumpLinks = [...document.querySelectorAll(".governance-jump-nav a[href^='#']")];
 const governanceJumpShell = document.querySelector(".governance-jump-shell");
 const GOVERNANCE_CONTACTS = Object.freeze({
-  dpoEmail: "encarregado_dpo@idvlabs.com.br"
+  dpoEmail: "contato@dvgenesis.com"
 });
 const COOKIE_CONSENT_KEY = "dvgenesis_cookie_consent";
 const COOKIE_POLICY_VERSION = "1.0";
