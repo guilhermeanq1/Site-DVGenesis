@@ -1,0 +1,21 @@
+/* Content update: accommodate six pillars in the existing cards and timeline. */
+.home-page .pillar-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.home-page .pillar-card h3 a:hover,
+.home-page .pillar-card h3 a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+.services-page .classic-pillar-row[id] {
+  scroll-margin-top: 110px;
+}
+.services-page .classic-pillar-text h3 {
+  white-space: normal;
+}
+@media (min-width: 1101px) {
+  body.home-page .pillars .pillar-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
