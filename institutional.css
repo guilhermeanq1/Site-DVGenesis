@@ -19,3 +19,13 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+@media (max-width: 1024px) {
+  .services-page .classic-pillar-marker {
+    grid-area: auto;
+  }
+  .services-page .classic-pillar-marker::before,
+  .services-page .classic-pillar-marker::after {
+    display: none !important;
+  }
+}
