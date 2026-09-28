@@ -187,22 +187,21 @@ const clientLogoAssets = {
   gen: "assets/clientes/gen-mark.png",
   ggn: "assets/clientes/ggn.png",
   demarest: "assets/clientes/demarest.svg",
-  vinci: "assets/clientes/vinci.jpg"
+  vinci: "assets/clientes/vinci.jpg",
+  comigo: "assets/clientes/comigo.png",
+  send: "assets/clientes/send-knowledge.png",
+  rottas: "assets/clientes/rottas.png",
+  simpar: "assets/clientes/simpar.png",
+  gerdau: "assets/clientes/gerdau.png",
+  mondelez: "assets/clientes/mondelez.png",
+  mrs: "assets/clientes/mrs.png",
+  penske: "assets/clientes/penske.png",
+  zapppts: "assets/clientes/zapppts.png",
+  pge: "assets/clientes/pge.png",
+  "grupo-a": "assets/clientes/grupo-a.png"
 };
 
-const clientLogosWithLabel = new Set([
-  "comigo",
-  "send",
-  "rottas",
-  "simpar",
-  "gerdau",
-  "mondelez",
-  "mrs",
-  "penske",
-  "zapppts",
-  "pge",
-  "grupo-a"
-]);
+const clientLogosWithLabel = new Set();
 
 
 
