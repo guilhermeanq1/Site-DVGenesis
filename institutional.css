@@ -67,3 +67,8 @@
     padding-bottom: 18px;
   }
 }
+
+/* Show client names when an official logo asset is not yet in the repository. */
+.trusted.trusted-clients .client-logo.logo-missing {
+  display: flex !important;
+}
