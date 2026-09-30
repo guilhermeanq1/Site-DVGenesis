@@ -1,0 +1,13 @@
+/* Keep the shared navigation balanced with the Partners page included. */
+@media (min-width: 1025px) and (max-width: 1300px) {
+  header.topbar { gap: 18px !important; }
+  header.topbar .main-nav { gap: 16px !important; }
+  header.topbar .main-nav a { font-size: 11px !important; }
+  header.topbar .logo.reference-logo { width: 202px !important; min-width: 202px !important; }
+}
+@media (min-width: 769px) {
+  body .footer .footer-columns > .footer-group.footer-navigation {
+    grid-template-columns: repeat(2, max-content) !important;
+    grid-template-rows: auto repeat(4, auto) !important;
+  }
+}
