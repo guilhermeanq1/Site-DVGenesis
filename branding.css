@@ -1,7 +1,35 @@
-/* Clean DVGenesis wordmark in the header and footer. */
+/* Preserve the high-resolution master and give its artwork more display pixels. */
+body header.topbar .logo.reference-logo {
+  width: 260px !important;
+  min-width: 260px !important;
+}
+body .footer .footer-brand .logo.reference-logo {
+  width: 260px !important;
+  min-width: 260px !important;
+}
 header.topbar .logo.reference-logo img[src$="dvgenesis-logo-clean.png"],
 .footer .footer-brand .logo.reference-logo img[src$="dvgenesis-logo-clean.png"] {
   object-fit: cover !important;
   filter: none !important;
+  image-rendering: auto;
   mix-blend-mode: multiply;
+}
+@media (min-width: 1025px) and (max-width: 1300px) {
+  body header.topbar .logo.reference-logo {
+    width: 240px !important;
+    min-width: 240px !important;
+  }
+}
+@media (max-width: 1024px) {
+  body header.topbar .logo.reference-logo {
+    width: clamp(112px, 34vw, 210px) !important;
+    min-width: 0 !important;
+    max-width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  body .footer .footer-brand .logo.reference-logo {
+    width: 230px !important;
+    min-width: 230px !important;
+  }
 }
