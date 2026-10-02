@@ -72,3 +72,119 @@
 .trusted.trusted-clients .client-logo.logo-missing {
   display: flex !important;
 }
+
+/* Hub AI Builders: compact, readable benefits in place of the illustration. */
+.services-page #hub-ai-builders {
+  column-gap: clamp(20px, 2vw, 32px);
+}
+.services-page .hub-ai-benefits {
+  position: relative;
+  z-index: 1;
+  grid-column: 3;
+  grid-row: 1;
+  min-width: 0;
+  width: 100%;
+  text-align: left;
+}
+.services-page .hub-ai-benefits > h4 {
+  margin: 0 0 14px;
+  color: #101a45;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.services-page .hub-ai-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.services-page .hub-ai-benefits-grid > li {
+  min-width: 0;
+  padding: 14px 11px;
+  border: 1px solid #dfe5f2;
+  border-radius: 12px;
+  background: #f8faff;
+}
+.services-page .hub-ai-benefits-grid :is(i, svg) {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0 0 10px;
+  color: #783cdb;
+}
+.services-page .hub-ai-benefits-grid h5 {
+  margin: 0 0 7px;
+  color: #101a45;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.services-page .hub-ai-benefits-grid p {
+  margin: 0;
+  color: #455370;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere !important;
+}
+@media (min-width: 901px) and (max-width: 1024px) {
+  .services-page .hub-ai-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 769px) and (max-width: 900px) {
+  .services-page .hub-ai-benefits {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+@media (max-width: 768px) {
+  .services-page #hub-ai-builders {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding-left: 40px;
+  }
+  .services-page #hub-ai-builders .classic-pillar-text {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    justify-self: stretch;
+    max-width: none;
+    padding: 0;
+    text-align: left !important;
+  }
+  .services-page #hub-ai-builders .classic-pillar-text p {
+    max-width: none;
+    margin-left: 0;
+  }
+  .services-page #hub-ai-builders .classic-pillar-marker {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 28px;
+    height: 28px;
+  }
+  .services-page .hub-ai-benefits {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+@media (max-width: 360px) {
+  .services-page #hub-ai-builders {
+    padding-left: 32px;
+  }
+  .services-page #hub-ai-builders .classic-pillar-marker {
+    width: 24px;
+    height: 24px;
+  }
+}
+@media (max-width: 620px) {
+  .services-page .hub-ai-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .services-page .hub-ai-benefits-grid > li {
+    padding: 12px 10px;
+  }
+}
