@@ -73,118 +73,164 @@
   display: flex !important;
 }
 
-/* Hub AI Builders: compact, readable benefits in place of the illustration. */
-.services-page #hub-ai-builders {
-  column-gap: clamp(20px, 2vw, 32px);
-}
-.services-page .hub-ai-benefits {
+/* Dedicated PESTEL section, outside the six-pillar timeline. */
+.services-page .pestel-section {
   position: relative;
-  z-index: 1;
-  grid-column: 3;
-  grid-row: 1;
-  min-width: 0;
-  width: 100%;
-  text-align: left;
+  box-sizing: border-box;
+  width: min(1220px, calc(100% - 48px));
+  max-width: 1220px;
+  margin: 32px auto 16px;
+  padding: clamp(24px, 3.5vw, 42px);
+  border: 1px solid #25366b;
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 96% 0, rgba(119, 58, 218, 0.24), transparent 58%),
+    #0c173a;
+  box-shadow: 0 18px 44px rgba(13, 26, 62, 0.12);
+  scroll-margin-top: 110px;
+  overflow: hidden;
 }
-.services-page .hub-ai-benefits > h4 {
-  margin: 0 0 14px;
-  color: #101a45;
-  font-size: 1rem;
+.services-page .pestel-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, #d02cdf, #8249fa 46%, #1687ff);
+}
+.services-page .pestel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+.services-page .pestel-kicker {
+  display: block;
+  margin-bottom: 7px;
+  color: #c9baff;
+  font-size: 0.78rem;
   font-weight: 700;
-  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
-.services-page .hub-ai-benefits-grid {
+.services-page #pestel-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(3rem, 5.3vw, 4.4rem) !important;
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: 0.04em;
+}
+.services-page .pestel-intro {
+  max-width: 490px;
+}
+.services-page .pestel-intro p {
+  margin: 0;
+  color: #ccd5ef;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+.services-page .pestel-intro .pestel-subtitle {
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.services-page .pestel-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
+  gap: 12px;
   padding: 0;
   margin: 0;
   list-style: none;
 }
-.services-page .hub-ai-benefits-grid > li {
+.services-page .pestel-grid > li {
   min-width: 0;
-  padding: 14px 11px;
-  border: 1px solid #dfe5f2;
-  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid #e1e6f5;
+  border-radius: 14px;
   background: #f8faff;
 }
-.services-page .hub-ai-benefits-grid :is(i, svg) {
+.services-page .pestel-grid :is(i, svg) {
   display: block;
-  width: 20px;
-  height: 20px;
-  margin: 0 0 10px;
-  color: #783cdb;
+  width: 22px;
+  height: 22px;
+  margin: 0 0 12px;
+  color: #743bdd;
 }
-.services-page .hub-ai-benefits-grid h5 {
+.services-page .pestel-grid h3 {
   margin: 0 0 7px;
   color: #101a45;
-  font-size: 0.84rem;
+  font-size: 0.96rem;
   font-weight: 700;
   line-height: 1.35;
-  overflow-wrap: anywhere;
+  overflow-wrap: anywhere !important;
 }
-.services-page .hub-ai-benefits-grid p {
+.services-page .pestel-grid p {
   margin: 0;
   color: #455370;
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   line-height: 1.5;
   overflow-wrap: anywhere !important;
 }
-@media (min-width: 901px) and (max-width: 1024px) {
-  .services-page .hub-ai-benefits-grid {
+.services-page .pestel-jump-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 12px;
+  color: #6430be;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.services-page .pestel-jump-link :is(i, svg) {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+.services-page .pestel-jump-link:hover {
+  color: #0b5ac9;
+}
+.services-page .pestel-jump-link:focus-visible {
+  outline: 2px solid #6430be;
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+@media (max-width: 720px) {
+  .services-page .pestel-section {
+    width: calc(100% - 32px);
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+  .services-page .pestel-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+  .services-page .pestel-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
   }
-}
-@media (min-width: 769px) and (max-width: 900px) {
-  .services-page .hub-ai-benefits {
-    grid-column: 2;
-    grid-row: 2;
+  .services-page .pestel-grid > li {
+    padding: 14px 12px;
   }
-}
-@media (max-width: 768px) {
-  .services-page #hub-ai-builders {
-    grid-template-columns: minmax(0, 1fr) !important;
-    padding-left: 40px;
+  .services-page .pestel-grid h3 {
+    font-size: 0.88rem;
   }
-  .services-page #hub-ai-builders .classic-pillar-text {
-    grid-column: 1 !important;
-    grid-row: auto !important;
-    justify-self: stretch;
-    max-width: none;
-    padding: 0;
-    text-align: left !important;
-  }
-  .services-page #hub-ai-builders .classic-pillar-text p {
-    max-width: none;
-    margin-left: 0;
-  }
-  .services-page #hub-ai-builders .classic-pillar-marker {
-    position: absolute;
-    left: 0;
-    top: 4px;
-    width: 28px;
-    height: 28px;
-  }
-  .services-page .hub-ai-benefits {
-    grid-column: 1;
-    grid-row: auto;
+  .services-page .pestel-grid p {
+    font-size: 0.82rem;
   }
 }
 @media (max-width: 360px) {
-  .services-page #hub-ai-builders {
-    padding-left: 32px;
+  .services-page .pestel-section {
+    width: calc(100% - 24px);
+    padding-right: 12px;
+    padding-left: 12px;
   }
-  .services-page #hub-ai-builders .classic-pillar-marker {
-    width: 24px;
-    height: 24px;
-  }
-}
-@media (max-width: 620px) {
-  .services-page .hub-ai-benefits-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-  }
-  .services-page .hub-ai-benefits-grid > li {
+  .services-page .pestel-grid > li {
     padding: 12px 10px;
   }
 }
