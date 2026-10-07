@@ -73,104 +73,109 @@
   display: flex !important;
 }
 
-/* Dedicated PESTEL section, outside the six-pillar timeline. */
+/* Institutional slide 8: original P-E-S-T-E-L columns and complete copy. */
 .services-page .pestel-section {
   position: relative;
   box-sizing: border-box;
-  width: min(1220px, calc(100% - 48px));
-  max-width: 1220px;
+  isolation: isolate;
+  width: min(1320px, calc(100% - 48px));
+  max-width: 1320px;
   margin: 32px auto 16px;
-  padding: clamp(24px, 3.5vw, 42px);
-  border: 1px solid #25366b;
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid #e1e6f2;
   border-radius: 28px;
-  background:
-    radial-gradient(ellipse at 96% 0, rgba(119, 58, 218, 0.24), transparent 58%),
-    #0c173a;
-  box-shadow: 0 18px 44px rgba(13, 26, 62, 0.12);
+  background: #ffffff;
+  box-shadow: 0 18px 44px rgba(13, 26, 62, 0.09);
   scroll-margin-top: 110px;
   overflow: hidden;
+}
+.services-page .pestel-heading {
+  position: relative;
+  margin-bottom: 34px;
 }
 .services-page .pestel-section::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: 5px;
-  background: linear-gradient(90deg, #d02cdf, #8249fa 46%, #1687ff);
-}
-.services-page .pestel-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 26px;
+  z-index: -1;
+  top: -7%;
+  right: 0;
+  width: 43%;
+  height: 112%;
+  background: url("assets/servicos/pestel-background.png") center bottom / cover no-repeat;
+  mask-image: linear-gradient(90deg, transparent, #000 76%);
+  pointer-events: none;
 }
 .services-page .pestel-kicker {
   display: block;
-  margin-bottom: 7px;
-  color: #c9baff;
-  font-size: 0.78rem;
+  margin-bottom: 16px;
+  color: #8c52ff;
+  font-size: 1.04rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 .services-page #pestel-title {
-  margin: 0;
-  color: #ffffff;
-  font-size: clamp(3rem, 5.3vw, 4.4rem) !important;
+  margin: 0 0 16px;
+  color: #012060;
+  font-size: clamp(1.8rem, 3.2vw, 3rem) !important;
   font-weight: 800;
-  line-height: 1.06;
-  letter-spacing: 0.04em;
+  font-style: italic;
+  line-height: 1.25;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
 }
-.services-page .pestel-intro {
-  max-width: 490px;
-}
-.services-page .pestel-intro p {
+.services-page .pestel-heading > p {
   margin: 0;
-  color: #ccd5ef;
-  font-size: 0.94rem;
-  line-height: 1.55;
-}
-.services-page .pestel-intro .pestel-subtitle {
-  margin-bottom: 8px;
-  color: #ffffff;
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  color: #012060;
+  font-size: clamp(1rem, 1.55vw, 1.3rem);
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.5;
 }
 .services-page .pestel-grid {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 .services-page .pestel-grid > li {
+  display: grid;
+  grid-template-rows: 104px 82px 1fr;
   min-width: 0;
-  padding: 18px;
-  border: 1px solid #e1e6f5;
-  border-radius: 14px;
-  background: #f8faff;
+  padding: 0;
+  border: 1.5px dashed #315a7c;
+  border-radius: 26px;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(17, 41, 72, 0.11);
+  overflow: hidden;
+  text-align: center;
 }
-.services-page .pestel-grid :is(i, svg) {
-  display: block;
-  width: 22px;
-  height: 22px;
-  margin: 0 0 12px;
-  color: #743bdd;
+.services-page .pestel-letter {
+  display: grid;
+  place-items: center;
+  color: #2b629e;
+  font-size: clamp(3.4rem, 5.6vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1;
 }
 .services-page .pestel-grid h3 {
-  margin: 0 0 7px;
-  color: #101a45;
-  font-size: 0.96rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 12px 8px;
+  background: #8999b7;
+  color: #ffffff;
+  font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.35;
   overflow-wrap: anywhere !important;
 }
 .services-page .pestel-grid p {
   margin: 0;
-  color: #455370;
-  font-size: 0.88rem;
+  padding: 24px 12px;
+  color: #012060;
+  font-size: 0.95rem;
   line-height: 1.5;
   overflow-wrap: anywhere !important;
 }
@@ -198,39 +203,44 @@
   outline-offset: 5px;
   border-radius: 4px;
 }
-@media (max-width: 720px) {
+@media (max-width: 1100px) {
+  .services-page .pestel-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+}
+@media (max-width: 620px) {
   .services-page .pestel-section {
-    width: calc(100% - 32px);
-    padding: 24px 18px;
+    width: calc(100% - 24px);
+    padding: 24px 14px;
     border-radius: 22px;
   }
   .services-page .pestel-heading {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
-    margin-bottom: 22px;
+    margin-bottom: 26px;
+  }
+  .services-page .pestel-section::before {
+    width: 60%;
+    height: 450px;
+    top: -40px;
+    opacity: 0.22;
   }
   .services-page .pestel-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 9px;
+    gap: 14px 10px;
   }
   .services-page .pestel-grid > li {
-    padding: 14px 12px;
+    grid-template-rows: 80px 76px 1fr;
+    border-radius: 22px;
+  }
+  .services-page .pestel-letter {
+    font-size: 3.5rem;
   }
   .services-page .pestel-grid h3 {
-    font-size: 0.88rem;
+    padding: 10px 6px;
+    font-size: 0.86rem;
   }
   .services-page .pestel-grid p {
-    font-size: 0.82rem;
-  }
-}
-@media (max-width: 360px) {
-  .services-page .pestel-section {
-    width: calc(100% - 24px);
-    padding-right: 12px;
-    padding-left: 12px;
-  }
-  .services-page .pestel-grid > li {
-    padding: 12px 10px;
+    padding: 18px 10px;
+    font-size: 0.86rem;
   }
 }
