@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Artigos, reflex&otilde;es e publica&ccedil;&otilde;es da DVGenesis e Tania Leal sobre Dados, Intelig&ecirc;ncia Artificial, Governan&ccedil;a, Tecnologia e Transforma&ccedil;&atilde;o Digital."
+      content="Conteúdos da DVGenesis e Tânia Leal sobre estratégia, dados, inteligência artificial e governança para empresas e lideranças, com acervo de carreira e formação."
     />
     <title>DVGenesis | Comunicação</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png?v=20260902-2" />
@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="styles.css?v=170" />
     <link rel="stylesheet" href="mobile.css?v=20260908" />
     <link rel="stylesheet" href="branding.css?v=20261001" />
+    <link rel="stylesheet" href="institutional.css?v=20261008" />
     <link rel="stylesheet" href="navigation.css?v=20260930-2" />
-    <script src="script.js?v=87" defer></script>
+    <script src="script.js?v=20261008" defer></script>
   </head>
   <body class="communication-page">
     <header class="topbar" data-header>
@@ -75,14 +76,25 @@
       <section class="communication-articles" aria-labelledby="communication-articles-title">
         <div class="communication-container">
           <div class="communication-section-head">
-            <span>Artigos LinkedIn</span>
-            <h2 id="communication-articles-title">Artigos e publica&ccedil;&otilde;es</h2>
+            <span>Para empresas e lideranças</span>
+            <h2 id="communication-articles-title">Negócios, IA e governança</h2>
             <p>
-              Conte&uacute;dos sobre Dados, Intelig&ecirc;ncia Artificial, Governan&ccedil;a, Tecnologia e Transforma&ccedil;&atilde;o Digital.
+              Reflexões sobre estratégia, dados, inteligência artificial e diversidade para apoiar decisões, inovação e geração de valor nas organizações.
             </p>
           </div>
 
-          <div class="communication-grid" data-articles-grid></div>
+          <div class="communication-grid" data-articles-grid="business"></div>
+        </div>
+      </section>
+
+      <section class="communication-articles communication-archive" aria-labelledby="communication-career-title">
+        <div class="communication-container">
+          <div class="communication-section-head">
+            <span>Acervo de conteúdos</span>
+            <h2 id="communication-career-title">Carreira e formação</h2>
+            <p>Publicações sobre competências, profissões e desenvolvimento individual em dados e inteligência artificial.</p>
+          </div>
+          <div class="communication-grid" data-articles-grid="career"></div>
         </div>
       </section>
     </main>
@@ -156,6 +168,7 @@
       const articles = [
         {
           title: "O Impacto Global do Cloud Act: Soberania de Dados, Conflitos...",
+          category: "business",
           excerpt: "Reflex&atilde;o sobre soberania de dados, riscos regulat&oacute;rios e impactos globais para empresas e governos.",
           readTime: "9 min de leitura",
           image: "assets/images/artigos/artigo-01.jpg",
@@ -163,27 +176,31 @@
         },
         {
           title: "Governan&ccedil;a de Intelig&ecirc;ncia Artificial para Gestores: Estrat&eacute;gia...",
+          category: "business",
           excerpt: "Uma vis&atilde;o pr&aacute;tica sobre governan&ccedil;a de IA, tomada de decis&atilde;o e responsabilidade executiva.",
           readTime: "8 min de leitura",
           image: "assets/images/artigos/artigo-02.jpg",
           url: "https://www.linkedin.com/pulse/governan%25C3%25A7a-de-intelig%25C3%25AAncia-artificial-para-gestores-estrat%25C3%25A9gia-leal-sssef?trackingId=TgmUffvBQAyxMk6bOo7Sgw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BoMKn7T1NTo6JuIaSdVtdmg%3D%3D"
         },
         {
-          title: "O 8 de Mar&ccedil;o - Luta, Mem&oacute;ria e Conquista",
-          excerpt: "Uma reflex&atilde;o sobre mem&oacute;ria, representatividade e conquistas na trajet&oacute;ria das mulheres.",
-          readTime: "4 min de leitura",
-          image: "assets/images/artigos/artigo-03.jpg",
-          url: "https://www.linkedin.com/pulse/o-8-de-mar%25C3%25A7o-luta-mem%25C3%25B3ria-e-conquista-t%25C3%25A2nia-mara-leal-j9pcf?trackingId=TgmUffvBQAyxMk6bOo7Sgw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BoMKn7T1NTo6JuIaSdVtdmg%3D%3D"
-        },
-        {
           title: "A Intelig&ecirc;ncia Artificial &eacute; um motor de trilh&otilde;es de d&oacute;lares...",
+          category: "business",
           excerpt: "An&aacute;lise sobre o potencial econ&ocirc;mico da IA e sua conex&atilde;o com estrat&eacute;gia, inova&ccedil;&atilde;o e valor.",
           readTime: "5 min de leitura",
           image: "assets/images/artigos/artigo-04.jpg",
           url: "https://www.linkedin.com/pulse/intelig%25C3%25AAncia-artificial-%25C3%25A9-um-motor-de-trilh%25C3%25B5es-d%25C3%25B3lares-leal-mq5xf?trackingId=TgmUffvBQAyxMk6bOo7Sgw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BoMKn7T1NTo6JuIaSdVtdmg%3D%3D"
         },
         {
+          title: "O 8 de Mar&ccedil;o - Luta, Mem&oacute;ria e Conquista",
+          category: "business",
+          excerpt: "Uma reflex&atilde;o sobre mem&oacute;ria, representatividade e conquistas na trajet&oacute;ria das mulheres.",
+          readTime: "4 min de leitura",
+          image: "assets/images/artigos/artigo-03.jpg",
+          url: "https://www.linkedin.com/pulse/o-8-de-mar%25C3%25A7o-luta-mem%25C3%25B3ria-e-conquista-t%25C3%25A2nia-mara-leal-j9pcf?trackingId=TgmUffvBQAyxMk6bOo7Sgw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BoMKn7T1NTo6JuIaSdVtdmg%3D%3D"
+        },
+        {
           title: "Profiss&atilde;o de Hoje e Futuro",
+          category: "career",
           excerpt: "Conte&uacute;dos sobre carreira, forma&ccedil;&atilde;o e habilidades para atuar em tecnologia, dados e IA.",
           readTime: "",
           image: "assets/images/artigos/artigo-05.jpg",
@@ -191,6 +208,7 @@
         },
         {
           title: "Profiss&otilde;es na &Aacute;rea de Intelig&ecirc;ncia Artificial e Dados",
+          category: "career",
           excerpt: "Explorando o futuro do trabalho e as oportunidades profissionais em Intelig&ecirc;ncia Artificial e Dados.",
           readTime: "8 min de leitura",
           image: "assets/images/artigos/artigo-06.jpg",
@@ -198,6 +216,7 @@
         },
         {
           title: "Profiss&otilde;es na &Aacute;rea de Dados e Intelig&ecirc;ncia Artificial",
+          category: "career",
           excerpt: "Um panorama sobre fun&ccedil;&otilde;es, compet&ecirc;ncias e caminhos profissionais em Dados e Intelig&ecirc;ncia Artificial.",
           readTime: "6 min de leitura",
           image: "assets/images/artigos/artigo-07.jpg",
@@ -205,6 +224,7 @@
         },
         {
           title: "O Futuro &eacute; Agora: Forma&ccedil;&atilde;o em Ci&ecirc;ncia de Dados e Intelig&ecirc;ncia Artificial",
+          category: "career",
           excerpt: "Conte&uacute;do sobre forma&ccedil;&atilde;o, tecnologia, dados e intelig&ecirc;ncia artificial.",
           readTime: "",
           image: "assets/images/artigos/artigo-08.jpg",
@@ -212,10 +232,9 @@
         }
       ];
 
-      const articlesGrid = document.querySelector("[data-articles-grid]");
-
-      if (articlesGrid) {
+      document.querySelectorAll("[data-articles-grid]").forEach((articlesGrid) => {
         articlesGrid.innerHTML = articles
+          .filter((article) => article.category === articlesGrid.dataset.articlesGrid)
           .map(
             (article) => `
               <article class="communication-card">
@@ -237,7 +256,7 @@
             `
           )
           .join("");
-      }
+      });
     </script>
   </body>
 </html>

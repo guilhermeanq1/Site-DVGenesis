@@ -73,6 +73,25 @@
   display: flex !important;
 }
 
+/* Keep the career archive secondary to the corporate articles. */
+@media (min-width: 1101px) {
+  .communication-page .communication-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.communication-page .communication-archive {
+  padding-top: 0;
+}
+
+.communication-page .communication-archive .communication-section-head {
+  margin-bottom: 28px;
+}
+
+.communication-page .communication-archive .communication-section-head h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
 /* Institutional slide 8: original P-E-S-T-E-L columns and complete copy. */
 .services-page .pestel-section {
   position: relative;

@@ -122,7 +122,7 @@ const clients = [
   ["Cyrela", "cyrela"],
   ["Rottas", "rottas"],
   ["Trisul", "trisul"],
-  ["Luckscolor", "luckscolor"],
+  ["Lukscolor", "luckscolor"],
   ["Simpar", "simpar"],
   ["eureciclo", "eureciclo"],
   ["Gerdau", "gerdau"],
