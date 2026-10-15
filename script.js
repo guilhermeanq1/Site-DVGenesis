@@ -1412,7 +1412,6 @@ paintHeader();
 menuButton?.addEventListener("click", () => {
   const open = header.classList.toggle("open");
   menuButton.setAttribute("aria-expanded", String(open));
-  menuButton.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
   menuButton.innerHTML = open ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>';
   renderIcons();
 });
@@ -1421,7 +1420,6 @@ nav?.addEventListener("click", (event) => {
   if (!event.target.closest("a")) return;
   header.classList.remove("open");
   menuButton?.setAttribute("aria-expanded", "false");
-  menuButton?.setAttribute("aria-label", "Abrir menu");
   if (menuButton) {
     menuButton.innerHTML = '<i data-lucide="menu"></i>';
   }
@@ -1448,4 +1446,3 @@ window.addEventListener("DOMContentLoaded", () => {
   renderEventsGallery();
   renderIcons();
 });
-
