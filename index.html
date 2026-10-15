@@ -17,26 +17,26 @@
     <link rel="stylesheet" href="branding.css?v=20261001" />
     <link rel="stylesheet" href="institutional.css?v=20261014-2" />
     <link rel="stylesheet" href="navigation.css?v=20260930-2" />
-    <script src="script.js?v=20261008" defer></script>
+    <link rel="stylesheet" href="hero-motion.css?v=20261014" />
+    <script src="script.js?v=20261014-clarity" defer></script>
+    <script src="hero-motion.js?v=20261014" defer></script>
+    <link rel="stylesheet" href="clarity.css?v=20261014-1" />
   </head>
-  <body class="home-page">
+  <body class="home-page clarity-site">
     <header class="topbar" data-header>
       <a class="logo reference-logo" href="index.html" aria-label="DVGenesis">
         <img src="assets/dvgenesis-logo-clean.png" alt="DVGenesis" />
       </a>
 
-      <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-button>
+      <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-navigation" data-menu-button>
         <i data-lucide="menu"></i>
       </button>
 
-      <nav class="main-nav" data-nav>
-        <a href="index.html" aria-current="page">Home</a>
+      <nav class="main-nav" id="main-navigation" aria-label="Navegação principal" data-nav>
         <a href="quem-somos.html">Institucional</a>
         <a href="servicos.html">Serviços</a>
         <a href="parceiros.html">Parceiros</a>
-          <a href="eventos.html">Eventos</a>
-        <a href="https://influo.me/" target="_blank" rel="noopener noreferrer">Produtos</a>
-        <a href="comunicacao.html">Comunicação</a>
+        <a href="comunicacao.html">Conteúdos</a>
       </nav>
 
       <div class="header-actions">
@@ -48,7 +48,7 @@
     </header>
 
     <main>
-      <section class="hero" id="inicio">
+      <section class="hero home-motion" id="inicio">
         <div class="hero-bg" aria-hidden="true"></div>
 
         <div class="hero-inner">
@@ -71,8 +71,15 @@
             </div>
           </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <img class="home-business-image" src="assets/idvlabs-hero.png" alt="" fetchpriority="high" />
+          <div class="motion-scene" aria-label="Soluções, dados e inovação conectados ao negócio">
+            <div class="motion-ambient" aria-hidden="true"></div>
+            <div class="motion-fallback" aria-hidden="true"></div>
+            <canvas class="motion-canvas" aria-hidden="true"></canvas>
+            <div class="motion-tag motion-tag-solutions"><span class="motion-tag-symbol" aria-hidden="true">↗</span><span><small>CONSTRUIR</small><strong>Soluções</strong></span></div>
+            <div class="motion-tag motion-tag-data"><span class="motion-tag-symbol motion-bars" aria-hidden="true"><b></b><b></b><b></b></span><span><small>CONECTAR</small><strong>Dados</strong></span></div>
+            <div class="motion-tag motion-tag-innovation"><span class="motion-tag-symbol" aria-hidden="true">✧</span><span><small>TRANSFORMAR</small><strong>Inovação</strong></span></div>
+            <div class="motion-caption" aria-hidden="true"><span></span>TECNOLOGIA EM MOVIMENTO</div>
+            <button class="motion-toggle" type="button" aria-label="Pausar animação" hidden><span class="motion-toggle-icon" aria-hidden="true">Ⅱ</span><span data-motion-label>Pausar</span></button>
           </div>
         </div>
       </section>
@@ -112,40 +119,88 @@
         </div>
       </section>
 
-      <section class="section pillars" id="solucoes">
-        <div class="section-head two-columns">
+      <section class="cc-block cc-clients" id="clientes" aria-labelledby="clients-title">
+        <div class="cc-heading"><div><p class="cc-eyebrow">QUEM CAMINHA COM A GENTE</p><h2 id="clients-title">Alguns dos nossos clientes</h2></div><p>Experiência em diferentes setores, conectada aos desafios de cada negócio.</p></div>
+        <ul class="cc-client-grid"><li class="cc-client" data-client="agrex"><div class="cc-brand"><img src="assets/clientes/agrex-do-brasil.svg" alt="Logo Agrex do Brasil" loading="lazy" decoding="async" /></div><span>Agrex do Brasil</span></li>
+<li class="cc-client" data-client="agrivalle"><div class="cc-brand"><img src="assets/clientes/agrivalle-institucional.png" alt="Logo Agrivalle" loading="lazy" decoding="async" /></div><span>Agrivalle</span></li>
+<li class="cc-client" data-client="bunge"><div class="cc-brand"><img src="assets/clientes/bunge.svg" alt="Logo Bunge" loading="lazy" decoding="async" /></div><span>Bunge</span></li>
+<li class="cc-client" data-client="embrapa"><div class="cc-brand"><img src="assets/clientes/embrapa.png" alt="Logo Embrapa" loading="lazy" decoding="async" /></div><span>Embrapa</span></li>
+<li class="cc-client" data-client="exata"><div class="cc-brand"><img src="assets/clientes/exata-brasil.png" alt="Logo Exata Brasil" loading="lazy" decoding="async" /></div><span>Exata Brasil</span></li>
+<li class="cc-client" data-client="tmg"><div class="cc-brand"><img src="assets/clientes/tmg-institucional.png" alt="Logo TMG" loading="lazy" decoding="async" /></div><span>TMG</span></li>
+<li class="cc-client" data-client="medmep"><div class="cc-brand"><img src="assets/clientes/medmep-institucional.png" alt="Logo MEDMEP" loading="lazy" decoding="async" /></div><span>MEDMEP</span></li>
+<li class="cc-client" data-client="comigo"><div class="cc-brand"><img src="assets/clientes/comigo.png" alt="Logo COMIGO" loading="lazy" decoding="async" /></div><span>COMIGO</span></li>
+<li class="cc-client" data-client="bv"><div class="cc-brand"><img src="assets/clientes/bv-institucional.png" alt="Logo Banco BV" loading="lazy" decoding="async" /></div><span>Banco BV</span></li>
+<li class="cc-client" data-client="aqua"><div class="cc-brand"><img src="assets/clientes/aqua-institucional.png" alt="Logo Aqua Capital" loading="lazy" decoding="async" /></div><span>Aqua Capital</span></li>
+<li class="cc-client" data-client="send"><div class="cc-brand"><img src="assets/clientes/send-knowledge.png" alt="Logo Send.Knowledge" loading="lazy" decoding="async" /></div><span>Send.Knowledge</span></li>
+<li class="cc-client" data-client="cnh"><div class="cc-brand"><img src="assets/clientes/cnh-institucional.png" alt="Logo CNH Industrial Capital" loading="lazy" decoding="async" /></div><span>CNH Industrial Capital</span></li></ul>
+        <details class="cc-client-more"><summary><span class="cc-show-more">Ver todos os clientes (44)</span><span class="cc-show-less">Mostrar menos clientes</span><span aria-hidden="true">+</span></summary><ul class="cc-client-grid"><li class="cc-client" data-client="pwc"><div class="cc-brand"><img src="assets/clientes/pwc.svg" alt="Logo PwC" loading="lazy" decoding="async" /></div><span>PwC</span></li>
+<li class="cc-client" data-client="cyrela"><div class="cc-brand"><img src="assets/clientes/cyrela.svg" alt="Logo Cyrela" loading="lazy" decoding="async" /></div><span>Cyrela</span></li>
+<li class="cc-client" data-client="rottas"><div class="cc-brand"><img src="assets/clientes/rottas.png" alt="Logo Rottas" loading="lazy" decoding="async" /></div><span>Rottas</span></li>
+<li class="cc-client" data-client="trisul"><div class="cc-brand"><img src="assets/clientes/trisul.svg" alt="Logo Trisul" loading="lazy" decoding="async" /></div><span>Trisul</span></li>
+<li class="cc-client" data-client="luckscolor"><div class="cc-brand"><img src="assets/clientes/luckscolor.png" alt="Logo Lukscolor" loading="lazy" decoding="async" /></div><span>Lukscolor</span></li>
+<li class="cc-client" data-client="simpar"><div class="cc-brand"><img src="assets/clientes/simpar.png" alt="Logo Simpar" loading="lazy" decoding="async" /></div><span>Simpar</span></li>
+<li class="cc-client" data-client="eureciclo"><div class="cc-brand"><img src="assets/clientes/eureciclo.svg" alt="Logo eureciclo" loading="lazy" decoding="async" /></div><span>eureciclo</span></li>
+<li class="cc-client" data-client="gerdau"><div class="cc-brand"><img src="assets/clientes/gerdau.png" alt="Logo Gerdau" loading="lazy" decoding="async" /></div><span>Gerdau</span></li>
+<li class="cc-client" data-client="fleury"><div class="cc-brand"><img src="assets/clientes/grupo-fleury.svg" alt="Logo Grupo Fleury" loading="lazy" decoding="async" /></div><span>Grupo Fleury</span></li>
+<li class="cc-client" data-client="butantan"><div class="cc-brand"><img src="assets/clientes/instituto-butantan.png" alt="Logo Instituto Butantan" loading="lazy" decoding="async" /></div><span>Instituto Butantan</span></li>
+<li class="cc-client" data-client="lindt"><div class="cc-brand"><img src="assets/clientes/lindt.png" alt="Logo Lindt" loading="lazy" decoding="async" /></div><span>Lindt</span></li>
+<li class="cc-client" data-client="sodexo"><div class="cc-brand"><img src="assets/clientes/sodexo.png" alt="Logo Sodexo" loading="lazy" decoding="async" /></div><span>Sodexo</span></li>
+<li class="cc-client" data-client="mondelez"><div class="cc-brand"><img src="assets/clientes/mondelez.png" alt="Logo Mondelez International" loading="lazy" decoding="async" /></div><span>Mondelez International</span></li>
+<li class="cc-client" data-client="craft"><div class="cc-brand"><img src="assets/clientes/craft-institucional.png" alt="Logo Craft" loading="lazy" decoding="async" /></div><span>Craft</span></li>
+<li class="cc-client" data-client="mrs"><div class="cc-brand"><img src="assets/clientes/mrs.png" alt="Logo MRS" loading="lazy" decoding="async" /></div><span>MRS</span></li>
+<li class="cc-client" data-client="penske"><div class="cc-brand"><img src="assets/clientes/penske.png" alt="Logo Penske" loading="lazy" decoding="async" /></div><span>Penske</span></li>
+<li class="cc-client" data-client="aiknow"><div class="cc-brand"><img src="assets/clientes/aiknow-institucional.png" alt="Logo AIKNOW" loading="lazy" decoding="async" /></div><span>AIKNOW</span></li>
+<li class="cc-client" data-client="icolab"><div class="cc-brand"><img src="assets/clientes/icolab-institucional.png" alt="Logo iCoLab" loading="lazy" decoding="async" /></div><span>iCoLab</span></li>
+<li class="cc-client" data-client="lwsa"><div class="cc-brand"><img src="assets/clientes/lwsa-institucional.png" alt="Logo LWSA" loading="lazy" decoding="async" /></div><span>LWSA</span></li>
+<li class="cc-client" data-client="mozaiko"><div class="cc-brand"><img src="assets/clientes/mozaiko-institucional.png" alt="Logo mozaiko" loading="lazy" decoding="async" /></div><span>mozaiko</span></li>
+<li class="cc-client" data-client="zapppts"><div class="cc-brand"><img src="assets/clientes/zapppts.png" alt="Logo Zapppts" loading="lazy" decoding="async" /></div><span>Zapppts</span></li>
+<li class="cc-client" data-client="agil"><div class="cc-brand"><img src="assets/clientes/agil-institucional.png" alt="Logo Cidade Ágil Consultoria" loading="lazy" decoding="async" /></div><span>Cidade Ágil Consultoria</span></li>
+<li class="cc-client" data-client="veritas"><div class="cc-brand"><img src="assets/clientes/veritas.png" alt="Logo Veritas" loading="lazy" decoding="async" /></div><span>Veritas</span></li>
+<li class="cc-client" data-client="taking"><div class="cc-brand"><img src="assets/clientes/taking-institucional.png" alt="Logo Grupo Taking" loading="lazy" decoding="async" /></div><span>Grupo Taking</span></li>
+<li class="cc-client" data-client="mulheres"><div class="cc-brand"><img src="assets/clientes/mulheres-institucional.png" alt="Logo Grupo Mulheres do Brasil" loading="lazy" decoding="async" /></div><span>Grupo Mulheres do Brasil</span></li>
+<li class="cc-client" data-client="mcio"><div class="cc-brand"><img src="assets/clientes/mcio-brasil.png" alt="Logo MCIO Brasil" loading="lazy" decoding="async" /></div><span>MCIO Brasil</span></li>
+<li class="cc-client" data-client="gen"><div class="cc-brand"><img src="assets/clientes/gen-institucional.png" alt="Logo GEN — Grupo Editorial Nacional" loading="lazy" decoding="async" /></div><span>GEN — Grupo Editorial Nacional</span></li>
+<li class="cc-client" data-client="ggn"><div class="cc-brand"><img src="assets/clientes/ggn.png" alt="Logo GGN" loading="lazy" decoding="async" /></div><span>GGN</span></li>
+<li class="cc-client" data-client="demarest"><div class="cc-brand"><img src="assets/clientes/demarest-institucional.png" alt="Logo Demarest" loading="lazy" decoding="async" /></div><span>Demarest</span></li>
+<li class="cc-client" data-client="pge"><div class="cc-brand"><img src="assets/clientes/pge.png" alt="Logo PGE Bahia" loading="lazy" decoding="async" /></div><span>PGE Bahia</span></li>
+<li class="cc-client" data-client="grupo-a"><div class="cc-brand"><img src="assets/clientes/grupo-a.png" alt="Logo Grupo A" loading="lazy" decoding="async" /></div><span>Grupo A</span></li>
+<li class="cc-client" data-client="vinci"><div class="cc-brand"><img src="assets/clientes/vinci-institucional.png" alt="Logo VINCI Energies" loading="lazy" decoding="async" /></div><span>VINCI Energies</span></li></ul></details>
+      </section>
+
+      <section class="cc-block cc-solutions" id="solucoes">
+        <div class="cc-heading">
           <div>
-            <h2>Nossos pilares de atuação</h2>
+            <p class="cc-eyebrow">DA ESTRATÉGIA À EXECUÇÃO</p><h2>Seis pilares. Uma visão de negócio.</h2>
           </div>
         </div>
 
-        <div class="pillar-grid">
-          <article class="pillar-card">
+        <div class="cc-service-grid">
+          <article class="cc-service">
             <i data-lucide="target"></i>
             <h3><a href="servicos.html#plano-estrategico">Plano Estratégico de Inovação</a></h3>
             <p>Conectamos estratégia, processos, dados e tecnologia para definir prioridades de inovação alinhadas ao negócio.</p>
           </article>
-          <article class="pillar-card">
+          <article class="cc-service">
             <i data-lucide="rocket"></i>
             <h3><a href="servicos.html#projetos-alto-impacto">Projetos de Alto Impacto</a></h3>
             <p>Desenvolvemos e integramos soluções digitais e de dados para melhorar processos e apoiar decisões.</p>
           </article>
-          <article class="pillar-card">
+          <article class="cc-service">
             <i data-lucide="brain-circuit"></i>
             <h3><a href="servicos.html#hub-ai-builders">Hub AI Builders</a></h3>
             <p>Construímos e integramos soluções de inteligência artificial para os processos e desafios da sua empresa.</p>
           </article>
-          <article class="pillar-card">
+          <article class="cc-service">
             <i data-lucide="shield-check"></i>
             <h3><a href="servicos.html#governanca-ia-dados">Governança de Dados e IA</a></h3>
             <p>Estruturamos responsabilidades, processos e controles para o uso confiável de dados e IA.</p>
           </article>
-          <article class="pillar-card">
+          <article class="cc-service">
             <i data-lucide="users"></i>
             <h3><a href="servicos.html#talent-acquisition">Talent Acquisition</a></h3>
             <p>Conectamos sua empresa às competências necessárias para executar e evoluir seus projetos.</p>
           </article>
-          <article class="pillar-card">
+          <article class="cc-service">
             <i data-lucide="graduation-cap"></i>
             <h3><a href="servicos.html#treinamento-capacitacao">Treinamento e Capacitação</a></h3>
             <p>Preparamos lideranças e equipes para aplicar conhecimento aos desafios reais do negócio.</p>
@@ -153,48 +208,20 @@
         </div>
       </section>
 
-      <section class="section why-program" id="programas">
-        <article class="featured-program" id="produtos">
-          <div class="featured-bg" aria-hidden="true"></div>
-          <div class="featured-content">
-            <h2>Governança de IA na prática</h2>
-            <span>
-              IA já é realidade, mas ainda exige literacia, estratégia e governança. A FIA Business School,
-              DVGenesis e Nexus se unem em uma formação intensiva para quem precisa estruturar IA com segurança,
-              visão de negócio e critérios de decisão.
-            </span>
-            <ul>
-              <li><i data-lucide="check-circle-2"></i>24 horas de formação em Governança de IA</li>
-              <li><i data-lucide="check-circle-2"></i>Estratégia, risco, compliance e tomada de decisão</li>
-            </ul>
-            <div class="course-partners" aria-label="Parceiros do curso">
-              <span>FIA Business School</span>
-              <span>DVGenesis</span>
-              <span>Nexus</span>
-            </div>
-            <a class="button gradient" href="https://lnkd.in/dzF_iKdd" target="_blank" rel="noopener">
-              Conheça a formação
-              <i data-lucide="arrow-right"></i>
-            </a>
-          </div>
-          <figure class="course-poster">
-            <img src="assets/governance-ai-poster-dvgenesis.png" alt="Governança de IA - Gamificação Executiva em IA" />
-          </figure>
-        </article>
+      <section class="cc-block cc-partnership" id="programas" aria-labelledby="partnership-title">
+        <div class="cc-fia-mark"><img src="assets/parceiros/fia-business-school.png" alt="FIA Business School" loading="lazy" /></div>
+        <div><p class="cc-eyebrow">CONHECIMENTO E COLABORAÇÃO</p><h2 id="partnership-title">Conectando estratégia e prática.</h2><p>Formação executiva em Governança de IA, em parceria com a FIA Business School e a Nexus.</p></div>
+        <a class="cc-text-link" href="parceiros.html">Conheça a parceria <span aria-hidden="true">↗</span></a>
       </section>
 
-      <section class="trusted section trusted-clients">
-        <div class="client-carousel" aria-label="Clientes DVGenesis" data-client-carousel>
-          <div class="client-track" data-client-track></div>
-        </div>
-      </section>
+      
 
-      <section class="section content" id="comunicacao">
-        <div class="section-head two-columns">
+      <section class="cc-block cc-content" id="comunicacao">
+        <div class="cc-heading">
           <div>
-            <h2>Conteúdo que inspira e gera transformação.</h2>
+            <p class="cc-eyebrow">IDEIAS PARA AVANÇAR</p><h2>Negócios e tecnologia em pauta.</h2>
           </div>
-          <div class="head-side right-only">
+          <div class="cc-content-link">
             <a href="comunicacao.html">
               Ver todos os conteúdos
               <i data-lucide="arrow-right"></i>
@@ -202,9 +229,9 @@
           </div>
         </div>
 
-        <div class="content-grid">
-          <article class="content-card">
-            <figure class="thumb article-thumb">
+        <div class="cc-article-grid">
+          <article class="cc-article">
+            <figure class="cc-thumb">
               <img src="assets/article-lideranca-digital.avif" alt="Liderança eficaz na era digital" />
             </figure>
             <div>
@@ -219,8 +246,8 @@
               </a>
             </div>
           </article>
-          <article class="content-card no-link">
-            <figure class="thumb article-thumb">
+          <article class="cc-article">
+            <figure class="cc-thumb">
               <img
                 src="assets/article-ti-inovacao.avif"
                 alt="Qual o papel da TI na Inovação e Transformação Digital das Organizações"
@@ -238,8 +265,8 @@
               </a>
             </div>
           </article>
-          <article class="content-card">
-            <figure class="thumb article-thumb">
+          <article class="cc-article">
+            <figure class="cc-thumb">
               <img
                 src="assets/article-conselho-tecnologia.avif"
                 alt="O Conselho nas Prestadoras de Serviço de Tecnologia e as Conselheiras"
@@ -257,8 +284,8 @@
               </a>
             </div>
           </article>
-          <article class="content-card">
-            <figure class="thumb article-thumb">
+          <article class="cc-article">
+            <figure class="cc-thumb">
               <img src="assets/article-comunidade-olhar-futuro.avif" alt="Comunidade Olhar do Futuro" />
             </figure>
             <div>
@@ -275,6 +302,7 @@
           </article>
         </div>
       </section>
+      <section class="cc-block cc-contact" aria-labelledby="contact-title"><div><p class="cc-eyebrow">VAMOS CONVERSAR</p><h2 id="contact-title">Qual é o próximo desafio do seu negócio?</h2><p>Conte com a DVGenesis para conectar estratégia, pessoas e tecnologia.</p></div><a class="button gradient" href="fale-conosco.html">Fale conosco <i data-lucide="arrow-right"></i></a></section>
     </main>
 
     <footer class="footer">
@@ -293,7 +321,7 @@
           <a href="servicos.html">Serviços</a>
           <a href="parceiros.html">Parceiros</a>
           <a href="eventos.html">Eventos</a>
-          <a href="https://influo.me/" target="_blank" rel="noopener noreferrer">Produtos</a>
+          <a href="https://influo.me/" target="_blank" rel="noopener noreferrer">Influo.me ↗</a>
           <a href="comunicacao.html">Comunicação</a>
         </div>
         <div class="footer-group footer-governance">
@@ -333,5 +361,6 @@
     </footer>
   </body>
 </html>
+
 
 
