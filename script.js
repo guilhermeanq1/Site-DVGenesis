@@ -144,7 +144,7 @@ const clients = [
   ["Grupo Taking", "taking"],
   ["Grupo Mulheres do Brasil", "mulheres"],
   ["MCIO Brasil", "mcio"],
-  ["gen", "gen"],
+  ["GEN", "gen"],
   ["GGN", "ggn"],
   ["Demarest", "demarest"],
   ["PGE", "pge"],
@@ -156,15 +156,15 @@ const clientDomains = {};
 
 const clientLogoAssets = {
   agrex: "assets/clientes/agrex-do-brasil.svg",
-  agrivalle: "assets/clientes/agrivalle-offwhite.png",
+  agrivalle: "assets/clientes/agrivalle-institucional.png",
   bunge: "assets/clientes/bunge.svg",
   embrapa: "assets/clientes/embrapa.png",
   exata: "assets/clientes/exata-brasil.png",
-  tmg: "assets/clientes/tmg.png",
-  medmep: "assets/clientes/medmep-linkedin.jpg",
-  bv: "assets/clientes/bv.png",
-  aqua: "assets/clientes/aqua-capital.png",
-  cnh: "assets/clientes/cnh-industrial.svg",
+  tmg: "assets/clientes/tmg-institucional.png",
+  medmep: "assets/clientes/medmep-institucional.png",
+  bv: "assets/clientes/bv-institucional.png",
+  aqua: "assets/clientes/aqua-institucional.png",
+  cnh: "assets/clientes/cnh-institucional.png",
   pwc: "assets/clientes/pwc.svg",
   cyrela: "assets/clientes/cyrela.svg",
   trisul: "assets/clientes/trisul.svg",
@@ -174,20 +174,20 @@ const clientLogoAssets = {
   butantan: "assets/clientes/instituto-butantan.png",
   lindt: "assets/clientes/lindt.png",
   sodexo: "assets/clientes/sodexo.png",
-  craft: "assets/clientes/craft-linkedin.jpg",
-  aiknow: "assets/clientes/aiknow.ico",
-  icolab: "assets/clientes/icolab-mark.png",
-  lwsa: "assets/clientes/lwsa.svg",
-  mozaiko: "assets/clientes/mozaiko.webp",
-  agil: "assets/clientes/cidade-agil.png",
+  craft: "assets/clientes/craft-institucional.png",
+  aiknow: "assets/clientes/aiknow-institucional.png",
+  icolab: "assets/clientes/icolab-institucional.png",
+  lwsa: "assets/clientes/lwsa-institucional.png",
+  mozaiko: "assets/clientes/mozaiko-institucional.png",
+  agil: "assets/clientes/agil-institucional.png",
   veritas: "assets/clientes/veritas.png",
-  taking: "assets/clientes/taking-mark.png",
-  mulheres: "assets/clientes/grupo-mulheres-do-brasil.png",
+  taking: "assets/clientes/taking-institucional.png",
+  mulheres: "assets/clientes/mulheres-institucional.png",
   mcio: "assets/clientes/mcio-brasil.png",
-  gen: "assets/clientes/gen-mark.png",
+  gen: "assets/clientes/gen-institucional.png",
   ggn: "assets/clientes/ggn.png",
-  demarest: "assets/clientes/demarest.svg",
-  vinci: "assets/clientes/vinci.jpg",
+  demarest: "assets/clientes/demarest-institucional.png",
+  vinci: "assets/clientes/vinci-institucional.png",
   comigo: "assets/clientes/comigo.png",
   send: "assets/clientes/send-knowledge.png",
   rottas: "assets/clientes/rottas.png",
@@ -201,7 +201,7 @@ const clientLogoAssets = {
   "grupo-a": "assets/clientes/grupo-a.png"
 };
 
-const clientLogosWithLabel = new Set();
+const clientLogosWithLabel = new Set(clients.map(([, slug]) => slug));
 
 
 
@@ -306,7 +306,7 @@ function renderClientCarousel() {
       const hidden = index >= clients.length ? ' aria-hidden="true"' : "";
       const labeled = clientLogosWithLabel.has(slug) ? " client-labeled" : "";
       const image = sources.length
-        ? `<img class="client-image" src="${sources[0]}" data-sources="${sources.join("|")}" data-source-index="0" alt="Logo ${label}" loading="eager" decoding="async" />`
+        ? `<img class="client-image" src="${sources[0]}" data-sources="${sources.join("|")}" data-source-index="0" alt="" aria-hidden="true" loading="eager" decoding="async" />`
         : "";
       return `<span class="client-logo client-${slug}${labeled}" role="img" aria-label="${label}"${hidden}>${image}<span class="client-name">${label}</span></span>`;
     })
@@ -378,6 +378,8 @@ function initClientMarqueePause() {
   carousel.addEventListener("focusin", pause);
   carousel.addEventListener("focusout", resume);
   carousel.addEventListener("touchstart", pause, { passive: true });
+  carousel.addEventListener("touchend", resume, { passive: true });
+  carousel.addEventListener("touchcancel", resume, { passive: true });
 }
 
 function formatMetric(value, prefix = "", suffix = "") {
