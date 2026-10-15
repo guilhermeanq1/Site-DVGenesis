@@ -1,0 +1,122 @@
+/* The Home illustration is independent of the older image/video hero layers. */
+.home-page .hero.home-motion#inicio {
+  background: #050a22 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+.home-page .hero.home-motion#inicio .hero-bg { display: none !important; }
+.home-page .hero.home-motion#inicio .hero-inner {
+  display: grid !important;
+  grid-template-columns: 1.08fr 1fr !important;
+  align-items: center !important;
+  gap: 20px !important;
+  min-height: 640px !important;
+  padding-top: 110px !important;
+  padding-bottom: 74px !important;
+  overflow: visible !important;
+}
+.home-page .hero.home-motion#inicio .hero-inner::before,
+.home-page .hero.home-motion#inicio .hero-copy::before { display: none !important; }
+.home-page .hero.home-motion#inicio .hero-copy { max-width: 650px !important; }
+.home-page .hero.home-motion#inicio .hero-copy h1 {
+  font-size: clamp(42px, 4.6vw, 64px) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.035em !important;
+}
+.home-page .hero.home-motion#inicio .hero-copy p {
+  max-width: 580px !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  color: #c3cce3 !important;
+}
+.home-page .hero.home-motion#inicio .hero-actions { margin-top: 30px !important; }
+.motion-scene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 460px;
+  min-width: 0;
+}
+.motion-ambient {
+  position: absolute;
+  inset: -15% -30%;
+  background: radial-gradient(ellipse at 56% 45%, #1542a12b 0, #6533ba1c 30%, transparent 63%);
+  pointer-events: none;
+}
+.motion-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.motion-fallback {
+  position: absolute;
+  width: 48%; height: 55%; left: 27%; top: 20%;
+  clip-path: polygon(18% 0, 82% 0, 100% 30%, 50% 100%, 0 30%);
+  background: linear-gradient(135deg, #45e4ff, #2153dd 45%, #9d4cff 70%, #e93cc9);
+  opacity: .65;
+}
+.motion-scene[data-ready] .motion-fallback { display: none; }
+.motion-tag {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px 13px 13px;
+  border: 1px solid #8faae333;
+  border-radius: 13px;
+  background: linear-gradient(125deg, #142645f5, #11192eea);
+  box-shadow: 0 15px 40px #0003, inset 0 1px #fff0;
+  color: #f0f4ff;
+  animation: dvg-card-float 8s ease-in-out infinite;
+}
+.motion-tag small { display: block; margin-bottom: 4px; color: #91a7ce; font-size: 9px; font-weight: 650; letter-spacing: .13em; }
+.motion-tag strong { font-size: 18px; font-weight: 650; line-height: 1.2; }
+.motion-tag-symbol { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 9px; background: #51bcff12; color: #68d7ff; font-size: 26px; }
+.motion-tag-solutions { right: 4%; top: 10%; animation-delay: -2s; }
+.motion-tag-data { left: 1%; top: 49%; animation-delay: -5s; }
+.motion-tag-innovation { right: 1%; bottom: 17%; animation-delay: -1s; }
+.motion-tag-innovation .motion-tag-symbol { color: #cd9cff; background: #a06aff14; }
+.motion-bars { display: flex; justify-content: center; align-items: end; gap: 3px; padding: 8px; box-sizing: border-box; }
+.motion-bars b { display: block; width: 4px; background: #68d7ff; border-radius: 2px; }
+.motion-bars b:nth-child(1) { height: 9px; }
+.motion-bars b:nth-child(2) { height: 15px; }
+.motion-bars b:nth-child(3) { height: 19px; }
+.motion-caption { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 9px; font-weight: 600; letter-spacing: .19em; color: #8498bf; }
+.motion-caption span { width: 5px; height: 5px; border-radius: 50%; background: #5acfff; box-shadow: 0 0 9px #5acfff; }
+.motion-toggle { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; padding: 8px 11px; font: inherit; font-size: 12px; color: #b9c9e7; border: 1px solid #8495bc42; border-radius: 8px; background: #0a142a; cursor: pointer; }
+.motion-toggle[hidden] { display: none; }
+.motion-toggle:hover { color: #fff; border-color: #7fb9ed; }
+.motion-toggle:focus-visible { outline: 2px solid #77d4ff; outline-offset: 4px; }
+.motion-toggle-icon { width: 13px; text-align: center; }
+.motion-scene[data-paused="true"] .motion-tag { animation-play-state: paused; }
+@keyframes dvg-card-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@media (min-width: 1450px) { .motion-scene { height: 510px; } }
+@media (max-width: 1024px) {
+  .home-page .hero.home-motion#inicio .hero-inner { gap: 0 !important; min-height: 600px !important; padding-top: 106px !important; }
+  .home-page .hero.home-motion#inicio .hero-copy h1 { font-size: clamp(36px, 4.6vw, 48px) !important; }
+  .motion-scene { height: 390px; }
+  .motion-tag { gap: 8px; padding: 10px; }
+  .motion-tag strong { font-size: 16px; }
+  .motion-tag-symbol { width: 29px; height: 29px; }
+  .motion-caption { left: 0; transform: none; font-size: 8px; letter-spacing: .12em; }
+}
+@media (max-width: 980px) {
+  .home-page .hero.home-motion#inicio .hero-inner { grid-template-columns: 1fr !important; padding-top: 104px !important; padding-bottom: 58px !important; min-height: 0 !important; }
+  .home-page .hero.home-motion#inicio .hero-copy { max-width: 600px !important; }
+  .home-page .hero.home-motion#inicio .hero-copy h1 { font-size: clamp(36px, 7.2vw, 48px) !important; max-width: 600px !important; }
+  .home-page .hero.home-motion#inicio .hero-copy p { font-size: 15px !important; margin-top: 20px !important; }
+  .home-page .hero.home-motion#inicio .hero-actions { margin-top: 22px !important; }
+  .motion-scene { height: 300px; max-width: 500px; margin: 8px auto 0; }
+  .motion-tag { padding: 9px 12px; gap: 8px; }
+  .motion-tag strong { font-size: 15px; }
+  .motion-tag small { font-size: 8px; }
+  .motion-tag-solutions { top: 9%; right: 2%; }
+  .motion-tag-data { left: 0; top: 45%; }
+  .motion-tag-innovation { right: 0; bottom: 16%; }
+  .motion-caption { display: none; }
+  .motion-toggle { min-height: 44px; left: 0; right: auto; }
+}
+@media (max-width: 380px) {
+  .home-page .hero.home-motion#inicio .hero-copy h1 { font-size: 35px !important; }
+  .motion-scene { height: 270px; }
+  .motion-tag { padding: 8px; gap: 5px; }
+  .motion-tag strong { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .motion-tag { animation: none; } }
+
