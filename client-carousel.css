@@ -35,7 +35,7 @@
 }
 
 .home-page .trusted.trusted-clients .client-track {
-  gap: 14px;
+  gap: 16px;
   animation-duration: 72s !important;
 }
 
@@ -44,9 +44,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 184px;
-  min-height: 108px;
-  padding: 12px 14px;
+  flex: 0 0 218px;
+  width: 218px;
+  min-height: 128px;
+  padding: 14px 16px;
   gap: 0;
   border: 1px solid #e0e7f0;
   border-radius: 14px;
@@ -59,7 +60,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 72px;
+  max-height: 90px;
   object-fit: contain;
   filter: none;
 }
@@ -70,12 +71,13 @@
   }
 
   .home-page .trusted.trusted-clients .client-logo {
-    width: 166px;
-    min-height: 102px;
+    flex-basis: 190px;
+    width: 190px;
+    min-height: 116px;
   }
 
   .home-page .trusted.trusted-clients .client-image {
-    max-height: 66px;
+    max-height: 80px;
   }
 }
 
@@ -101,19 +103,20 @@
   }
 
   .home-page .trusted.trusted-clients .client-track {
-    gap: 12px;
+    gap: 10px;
     animation-duration: 64s !important;
   }
 
   .home-page .trusted.trusted-clients .client-logo {
-    width: 146px;
-    min-height: 94px;
+    flex-basis: 168px;
+    width: 168px;
+    min-height: 106px;
     padding: 10px 8px;
     border-radius: 12px;
   }
 
   .home-page .trusted.trusted-clients .client-image {
-    max-height: 62px;
+    max-height: 72px;
   }
 }
 
