@@ -201,10 +201,6 @@ const clientLogoAssets = {
   "grupo-a": "assets/clientes/grupo-a.png"
 };
 
-const clientLogosWithLabel = new Set(clients.map(([, slug]) => slug));
-
-
-
 const fallbackIcons = {
   "arrow-right": '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
   "badge-check": '<path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.78 4.78 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.78 4 4 0 0 1 0-6.75z"/><path d="m9 12 2 2 4-4"/>',
@@ -304,11 +300,10 @@ function renderClientCarousel() {
     .map(([label, slug], index) => {
       const sources = getClientLogoSources(slug);
       const hidden = index >= clients.length ? ' aria-hidden="true"' : "";
-      const labeled = clientLogosWithLabel.has(slug) ? " client-labeled" : "";
       const image = sources.length
         ? `<img class="client-image" src="${sources[0]}" data-sources="${sources.join("|")}" data-source-index="0" alt="" aria-hidden="true" loading="eager" decoding="async" />`
         : "";
-      return `<span class="client-logo client-${slug}${labeled}" role="img" aria-label="${label}"${hidden}>${image}<span class="client-name">${label}</span></span>`;
+      return `<span class="client-logo client-${slug}" role="img" aria-label="${label}"${hidden}>${image}</span>`;
     })
     .join("");
 
