@@ -18,6 +18,15 @@
     <link rel="stylesheet" href="institutional.css?v=20261014-2" />
     <link rel="stylesheet" href="navigation.css?v=20260930-2" />
     <script src="script.js?v=20261008" defer></script>
+    <!-- i18n:head -->
+    <link rel="canonical" href="https://dvgenesis.com/servicos.html" />
+    <link rel="alternate" hreflang="pt-BR" href="https://dvgenesis.com/servicos.html" />
+    <link rel="alternate" hreflang="en" href="https://dvgenesis.com/en/servicos.html" />
+    <link rel="alternate" hreflang="es" href="https://dvgenesis.com/es/servicos.html" />
+    <link rel="alternate" hreflang="x-default" href="https://dvgenesis.com/servicos.html" />
+    <link rel="stylesheet" href="language-switch.css?v=20261104" />
+    <script src="language-switch.js?v=20261104" defer></script>
+    <!-- /i18n:head -->
   </head>
   <body class="services-page">
     <header class="topbar" data-header>
@@ -37,9 +46,20 @@
           <a href="eventos.html">Eventos</a>
         <a href="https://influo.me/" target="_blank" rel="noopener noreferrer">Produtos</a>
         <a href="comunicacao.html">Comunicação</a>
+      
+        <!-- i18n:mobile-contact --><a class="language-mobile-contact" href="fale-conosco.html">Fale conosco</a><!-- /i18n:mobile-contact -->
       </nav>
 
       <div class="header-actions">
+        <!-- i18n:switch -->
+        <label class="language-switch"><span class="sr-only">Idioma do site</span>
+          <select data-language-switch aria-label="Idioma do site">
+            <option lang="pt-BR" value="servicos.html" selected>Português</option>
+            <option lang="en" value="en/servicos.html">English</option>
+            <option lang="es" value="es/servicos.html">Español</option>
+          </select>
+        </label>
+        <!-- /i18n:switch -->
         <a class="header-cta" href="fale-conosco.html">
           Fale conosco
           <i data-lucide="arrow-right"></i>
@@ -272,8 +292,13 @@
           </svg>
         </span>
       </a>
+    
+        <!-- i18n:footer -->
+        <nav class="footer-languages" aria-label="Idioma do site"><a data-language-link lang="pt-BR" hreflang="pt-BR" href="servicos.html" aria-current="true">Português</a><a data-language-link lang="en" hreflang="en" href="en/servicos.html">English</a><a data-language-link lang="es" hreflang="es" href="es/servicos.html">Español</a></nav>
+        <!-- /i18n:footer -->
     </footer>
   </body>
 </html>
+
 
 
