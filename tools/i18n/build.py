@@ -57,6 +57,8 @@ def render(source,page,lang):
   source=source.replace('lang="pt-BR"','lang="'+LANGS[lang][0]+'"',1)
   def resource(m):
    pre,q,v=m.group(1),m.group(2),m.group(3)
+   if v=='assets/governance-ai-poster-dvgenesis.png':
+    v='assets/governance-ai-poster-dvgenesis-'+lang+'.png'
    if v.startswith('assets/') or (re.match(r'[^/:]+\.css(?:\?|$)',v)):
     v='../'+v
    return pre+q+v+q

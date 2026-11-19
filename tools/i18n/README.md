@@ -21,3 +21,9 @@ O seletor e os links do rodapé preservam a página e a seção atual. A escolha
 Cada idioma tem canonical próprio, referências hreflang recíprocas e entradas no sitemap.
 Textos de artigos externos foram traduzidos na apresentação; os links continuam
 apontando aos originais em português. Logotipos e artes oficiais são preservados.
+
+
+A arte do curso na Home tem versões próprias por idioma: a original em português
+fica em `assets/governance-ai-poster-dvgenesis.png`; inglês e espanhol usam os
+arquivos com sufixos `-en.png` e `-es.png`. O gerador seleciona a arte correspondente
+automaticamente para manter a tradução dentro da imagem nas próximas atualizações.
